@@ -1,13 +1,14 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
+import spinner from './spinner.png'
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={spinner} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Already editing <code>src/App.js</code>. 
         </p>
         <a
           className="App-link"
@@ -15,7 +16,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Let's go!
         </a>
       </header>
     </div>
