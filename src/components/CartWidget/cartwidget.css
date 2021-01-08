@@ -1,0 +1,33 @@
+
+.user__cart {
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: transform .2s linear
+}
+
+.user__cart:hover {
+    transform: scale(1.05)
+}
+
+.cart__icon {
+    font-size: 19px;
+    padding-left: 5px;
+    margin-bottom: -3px;
+    color: gray;
+}
+
+.cart__icon:hover {
+    color: #63b231
+}
+
+.cart__link {
+    padding: 3px 5px;
+    padding-left: 0px;
+    border-right: 2.5px solid black
+}
+
+.cart__counter {
+    padding: 3px 5px;
+    margin-right: 10px;
+}
