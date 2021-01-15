@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap');
+
+*:focus {
+    outline: none;
+}
+
+.cart-counter {
+    width: 20%;
+    padding: 10px;
+    border: 1px solid white;
+    border-left: 3px solid #63b231;
+    border-right: 3px solid #63b231;
+    border-radius: 3px;
+}
+
+.counter-controls {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    border: 1px solid white;
+    margin-bottom: 10px;
+}
+
+.button {
+    padding: 0px;
+    margin: 0px;
+    background-color: white;
+    border: none;
+}
+
+.plus-icon, .minus-icon {
+    padding: 0px;
+    margin: 0px;
+    font-size: 30px;
+    color: #63b231;
+}
+
+.button:disabled .plus-icon, 
+.button:disabled .minus-icon {
+    color: gray
+}
+
+.plus-icon:disabled, .minus-icon:disabled {
+    color: red;
+}
+
+.add-item {
+    width: 100%;
+    padding: 3px;
+    font-size: 18px;
+    color: white;
+    background-color: black;
+    border: 2px outset white;
+    border-radius: 3px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.add-item:disabled {
+    background-color: gray;
+    border: 2px solid whitesmoke;
+}
+
+.add-item:disabled .cart-icon {
+    color: white;
+}
+
+.cart-icon {
+    margin-left: 6px;
+    margin-bottom: -2px;
+    color: #63b231;
+
+}
