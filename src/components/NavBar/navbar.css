@@ -14,7 +14,8 @@ select:focus, input:focus{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    background-color: white;
 }
 
 .navbar__logo {

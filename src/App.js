@@ -1,17 +1,14 @@
-//import logo from './logo.svg';
-import spinner from './images/spinner.png'
 import './App.css';
 import {NavBar} from './components/NavBar/NavBar' //como no es export default, va si o si con llaves y con el nombre con que fue inicializado
-//import {Home} from './components/Home/Home'
-import ItemListContainer from './components/ItemList/ItemListContainer'
+import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 
 function App() {
   return (
     <div className="App">
       <NavBar/>
-      {/*<Home/>*/}
-      <header className="App-header">
         <ItemListContainer greeting="Página en construcción"/>
+       {/*
+       <header className="App-header">
         <img src={spinner} className="App-logo" alt="logo" />
         <p>
           Already editing <code>src/App.js</code>. 
@@ -23,7 +20,7 @@ function App() {
           rel="noopener noreferrer">
           Let's go!
         </a>
-      </header>
+      </header>*/}
     </div>
   );
 }

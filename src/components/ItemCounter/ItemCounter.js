@@ -1,14 +1,21 @@
-import React from "react"
-import "./cartcounter.css"
+import React, {useState} from "react"
+import "./itemcounter.css"
 import { AiFillPlusSquare, AiFillMinusSquare } from "react-icons/ai";
 import { TiShoppingCart } from "react-icons/ti";
 
+const ItemCounter = ({initial, stock}) => {
+    //counter, sum, substr
+    const [counter, setCounter] = useState(initial);
 
+    const sum = () => {
+        counter < stock && setCounter(counter + 1)
+    }
 
-
-const CartCounter = ({counter, sum, substr}) => {
+    const substr = () => {
+        counter >= initial && setCounter(counter - 1)
+    };
     return (
-        <div className="cart-counter">
+        <div className="item-counter">
             <div className="counter-controls">
             <button onClick={substr} className="button" disabled={counter === 0}>
             <AiFillMinusSquare className={"minus-icon"}/>
@@ -27,4 +34,4 @@ const CartCounter = ({counter, sum, substr}) => {
     )
 }
 
-export default CartCounter
+export default ItemCounter

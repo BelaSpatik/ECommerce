@@ -4,8 +4,9 @@
     outline: none;
 }
 
-.cart-counter {
-    width: 20%;
+.item-counter {
+    width: 92%;
+    margin-left: -2px;
     padding: 10px;
     border: 1px solid white;
     border-left: 3px solid #63b231;
@@ -38,10 +39,6 @@
 .button:disabled .plus-icon, 
 .button:disabled .minus-icon {
     color: gray
-}
-
-.plus-icon:disabled, .minus-icon:disabled {
-    color: red;
 }
 
 .add-item {
