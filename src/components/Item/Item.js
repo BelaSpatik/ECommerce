@@ -1,25 +1,20 @@
 import React from "react"
 import "./item.css"
-import ItemCounter from "../ItemCounter/ItemCounter"
+import { Link } from "react-router-dom"
 
 
-const Item = ({id, name, author, price, img}) => {
+const Item = ({item}) => {
     return (
         <React.Fragment>
-        <div key={id}  className={"item__div"}>
-            <img src={img} className={"item__cover"} alt="book-cover"></img>
+        <div key={item.id}  className={"item__div"}>
+        <Link to={`/item/${item.id}`} >
+            <img src={item.pictureurl} className={"item__cover"} alt="book-cover"></img>
+        </Link>
             <div className={"item__info"}>
-                <span className={"info__title"}>{name}</span>
-                <span className={"info__author"}>{author}</span>
-                {/*<div className={"info__genre"}>
-                    { tags.map((genre) => {
-                        return <span>{genre}</span>
-                    })}
-                </div>
-                <p className={"item-synopsis"}>{book.synopsis}</p>*/}
-                <span className={"info__price"}>${price}</span>
+                <span className={"info__title"}>{item.name}</span>
+                <span className={"info__author"}>{item.author}</span>
+                <span className={"info__price"}>AR$ {item.price}</span>
             </div>
-            <ItemCounter initial={1} stock={6} />
         </div>
         </React.Fragment>
         

@@ -5,13 +5,19 @@
 }
 
 .item-counter {
-    width: 92%;
-    margin-left: -2px;
+    /*width: 92%;*/
+    width: 100%;
+    margin: 24px;
     padding: 10px;
+    color: white;
+    font-size: 20px;
     border: 1px solid white;
     border-left: 3px solid #63b231;
     border-right: 3px solid #63b231;
     border-radius: 3px;
+    box-shadow: 0px 0px 2px silver;
+    background-color: rgba(0, 0, 0, 0.2);
+
 }
 
 .counter-controls {
@@ -41,10 +47,14 @@
     color: gray
 }
 
+.counter {
+    padding: 3px
+}
+
 .add-item {
     width: 100%;
     padding: 3px;
-    font-size: 18px;
+    font-size: 17px;
     color: white;
     background-color: black;
     border: 2px outset white;
@@ -59,11 +69,11 @@
 
 .add-item:disabled .cart-icon {
     color: white;
+
 }
 
 .cart-icon {
     margin-left: 6px;
     margin-bottom: -2px;
     color: #63b231;
-
 }

@@ -3,11 +3,21 @@
     margin: 10px;
     background-color: black;
     border: 1px solid white;
-    border-bottom: none;
     box-shadow: 0px 0px 5px gray;
+    transition: transform ease-out .5s
 }
 
-.item__div span {
+.span__detail {
+    display: none;
+}
+
+.item__div:hover {
+    transform: scale(1.04);
+}
+
+.item__div .info__title,
+.item__div .info__author,
+.item__div .info__price {
     display: block
 }
 
@@ -50,18 +60,4 @@
     border-left: 20px solid black;
     border-right: 20px solid black;
     background-color: rgba(99, 178, 49, 0.3);
-}
-
-.info__genre span {
-    display: inline-block;
-    margin-left: 10px;
-    font-size: 19px;
-    color: white;
-    border: 1px solid red;
-    background-color: green;
-}
-
-.item__synopsis {
-    text-align: center;
-    font-size: 18px;
 }
