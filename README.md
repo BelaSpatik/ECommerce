@@ -1,4 +1,4 @@
-# Projecto Final del Curso de React (CoderHouse 2021)
+# Projecto Final (React - CoderHouse 2021)
 
 * E-commerce pensado para librerías: catálogo online de todos los productos junto con su detalle correspondiente + carrito de compras.
 * HTML, CSS, JS, JSX 
