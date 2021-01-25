@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import "./itemdetail.css"
 import ItemCounter from "../ItemCounter/ItemCounter"
-import {useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { GiRoundStar } from 'react-icons/gi';
 
 const ItemDetail = ({ item }) => {
@@ -44,17 +44,14 @@ const ItemDetail = ({ item }) => {
         <h1 className={"d-info__name"}>{item.name}</h1>
         <h2 className={"d-info__author"}>{item.author}</h2>
         <p className={"d-info__tags"}>Categorías: 
-         { item.genre !== undefined && item.genre[1].map((tags)=> {
-            return <span key={tags}>{tags}</span> 
+         { item.genre !== undefined && item.genre.map((tags) => {
+          return (
+          <Link to={`/category/${tags.catId}`}>
+            <span key={tags.catId}>{tags.name}</span>
+          </Link>)
          })
          }
         </p>
-        {/*<p className={"d-info__tags"}>Categorías: 
-         { item && item.genre[1].map((tags)=> {
-            return <span key={tags}>{tags}</span> 
-         })
-         }
-        </p>*/}
         <p className={"d-info__synopsis"}>
         { !item.genre ? null
         :
@@ -76,9 +73,9 @@ const ItemDetail = ({ item }) => {
             { item.traduccion && 
             <p>Traducción: {item.traduccion}</p>
             }
-            { /*item.ilustracion && 
+            { item.ilustracion && 
             <p>Ilustración: {item.ilustracion}</p>
-            */}
+            }
           </div>
           <div className={"detail__itemcounter"}>
           <ItemCounter initial={1} stock={6}/> 

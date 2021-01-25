@@ -1,6 +1,5 @@
 import React from 'react'
 import './navbar.css'
-import Logo from '../../images/addenda1.png'
 import CartWidget from '../CartWidget/CartWidget'
 import { Link } from "react-router-dom"
 import { BiDownArrow, BiSearchAlt2 } from "react-icons/bi"
@@ -10,7 +9,7 @@ import { IoIosArrowDown } from "react-icons/io"
 export const NavBar = () => {  //export default si yo después voy a tener + funciones
     return (
         <nav className="navbar">
-            <Link to={"/"}><img src={Logo} className="navbar__logo" alt="logo" /></Link>
+            <Link to={"/"}><img src={process.env.PUBLIC_URL + "/images/addenda1.png"} className="navbar__logo" alt="logo" /></Link>
             <ul className="navbar__menu">
                 <li className="menu__item">
                 <Link to={"/"}><span className="menu__link link" href="#home">Home</span></Link>

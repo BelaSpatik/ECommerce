@@ -2,7 +2,7 @@
 
 .item__detail {
     margin: 40px auto;
-    width: 76%;
+    width: 80%;
     display: flex;
     background-color: transparent;
     text-align: left;
@@ -92,6 +92,11 @@
 .d-info__tags {
     margin: 15px 0px;
     margin-left: 20px;
+}
+
+.d-info__tags a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .d-info__synopsis {

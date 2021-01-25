@@ -38,6 +38,8 @@
 }
 
 .info__title {
+    height: 26px;
+    overflow: auto;
     font-weight: bold;
     background-color: white;
     border-left: 1px solid black;

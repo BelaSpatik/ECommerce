@@ -13,10 +13,10 @@ function App() {
         <Route exact path="/">  {/*  "/category/:categoryId" - "/:categoryID?" - "/item/:id" */}
         <ItemListContainer greeting="Página en construcción"/>
         </Route>
-        <Route exact path="/category/:categoryId?"> 
+        <Route exact path="/category/:categoryId"> 
         <ItemListContainer greeting="Página en construcción"/>
         </Route>
-        <Route exact path="/item/:itemId?">
+        <Route exact path="/item/:itemId">
         <ItemDetailContainer/>
         </Route>
        {/*
