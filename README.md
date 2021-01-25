@@ -1,3 +1,10 @@
+# Projecto Final del Curso de React (CoderHouse 2021)
+
+* E-commerce pensado para librerías: catálogo online de todos los productos junto con su detalle correspondiente + carrito de compras.
+* HTML, CSS, JS, JSX 
+
+_______________________________________________
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
