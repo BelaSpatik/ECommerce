@@ -3,7 +3,7 @@ import {useParams } from "react-router-dom"
 import {getBookById} from "../../backend/catalog"
 import ItemDetail from "../ItemDetail/ItemDetail";
 
-const ItemDetailContainer = () => {
+const ItemDetailContainer = ({cart, setCart}) => {
   const [item, setItem] = useState({});
 
   const {itemId} = useParams()
@@ -17,7 +17,7 @@ const ItemDetailContainer = () => {
   return (
     <>
     { item.hasOwnProperty("id") && 
-    <ItemDetail item={item} />
+    <ItemDetail item={item} cart={cart} setCart={setCart} />
   }
     </>
   )

@@ -1,3 +1,4 @@
+import React, { useState } from "react"
 import './App.css';
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 import {NavBar} from './components/NavBar/NavBar' //como no es export default, va si o si con llaves y con el nombre con que fue inicializado
@@ -5,10 +6,13 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
 
 function App() {
+
+  const [cart, setCart] = useState(0)
+
   return (
     <div className="App">
       <BrowserRouter>
-      <NavBar/>
+      <NavBar cart={cart} />
       <Switch>
         <Route exact path="/">  {/*  "/category/:categoryId" - "/:categoryID?" - "/item/:id" */}
         <ItemListContainer greeting="Página en construcción"/>
@@ -17,7 +21,7 @@ function App() {
         <ItemListContainer greeting="Página en construcción"/>
         </Route>
         <Route exact path="/item/:itemId">
-        <ItemDetailContainer/>
+        <ItemDetailContainer cart={cart} setCart={setCart} />
         </Route>
        {/*
        <header className="App-header">

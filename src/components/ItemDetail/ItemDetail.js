@@ -1,19 +1,36 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import "./itemdetail.css"
 import ItemCounter from "../ItemCounter/ItemCounter"
+import CartModal from "../CartModal/CartModal"
 import { Link, useParams } from "react-router-dom"
 import { GiRoundStar } from 'react-icons/gi';
 
-const ItemDetail = ({ item }) => {
-    //item !== {} && console.log("HOLA")
-    console.log(item);
-    //console.log(item.genre[1])
+const ItemDetail = ({ item, cart, setCart }) => {
+
+    const [modal, setModal] = useState(false)
+    const [stock, setStock] = useState(item.stock)
+    const [addItems, setAddItems] = useState(0)
+    //const [cart, setCart] = useState(0)
+
+    //console.log(stock);
 
     const {itemId} = useParams()
   
     useEffect(()=> {
-      console.log(itemId)
+      //console.log("/:itemId ->", itemId)
     }, [itemId])
+
+    useEffect(() => {
+      console.log("Added items:", addItems)
+    }, [addItems])
+
+    useEffect(() => {
+      console.log("Stock:", stock)
+    }, [stock])
+
+    useEffect(() => {
+      console.log("Cart:", cart)
+    }, [cart])
 
     const favourite = () => {
       let icon = document.querySelector(".favourite__icon");
@@ -46,8 +63,8 @@ const ItemDetail = ({ item }) => {
         <p className={"d-info__tags"}>Categorías: 
          { item.genre !== undefined && item.genre.map((tags) => {
           return (
-          <Link to={`/category/${tags.catId}`}>
-            <span key={tags.catId}>{tags.name}</span>
+          <Link key={tags.catId} to={`/category/${tags.catId}`}>
+            <span>{tags.name}</span>
           </Link>)
          })
          }
@@ -61,7 +78,7 @@ const ItemDetail = ({ item }) => {
         item.synopsis.map((parragraph) => {
           return <span key={parragraph} className={"parr"}>{parragraph}</span>
         })
-      }
+        }
         </p>
         <div className={"detail__footer"}>
           <div className={"detail__f-tecnica"}>
@@ -78,10 +95,15 @@ const ItemDetail = ({ item }) => {
             }
           </div>
           <div className={"detail__itemcounter"}>
-          <ItemCounter initial={1} stock={6}/> 
+          <ItemCounter initial={1} stock={stock} setModal={setModal} setAddItems={setAddItems} /> 
           </div>
         </div>
-      </div>
+      </div> 
+      { modal ? 
+      <CartModal 
+      item={item} setModal={setModal} addItems={addItems} setAddItems={setAddItems}
+      stock={stock} setStock={setStock} cart={cart} setCart={setCart} itemId={itemId} /> 
+      : null }
     </div>
   )
 }

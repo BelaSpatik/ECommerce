@@ -6,7 +6,7 @@ import { BiDownArrow, BiSearchAlt2 } from "react-icons/bi"
 import { IconContext } from "react-icons"
 import { IoIosArrowDown } from "react-icons/io"
 
-export const NavBar = () => {  //export default si yo después voy a tener + funciones
+export const NavBar = ({cart}) => {  //export default si yo después voy a tener + funciones
     return (
         <nav className="navbar">
             <Link to={"/"}><img src={process.env.PUBLIC_URL + "/images/addenda1.png"} className="navbar__logo" alt="logo" /></Link>
@@ -113,7 +113,7 @@ export const NavBar = () => {  //export default si yo después voy a tener + fun
                 </li>
             </ul>
             <div className="navbar__user">
-                <CartWidget/>
+                <CartWidget cart={cart} />
                 <IconContext.Provider value= { {className: "user__arrowicon" }}>
                 <div className="user__tab">Nombre.usuario
                 <BiDownArrow/>
