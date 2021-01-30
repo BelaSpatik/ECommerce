@@ -138,6 +138,13 @@
     background-color: rgba(211, 211, 211, 0.6);
 }
 
+.loading-state {
+    background-color: rgba(99, 178, 49, 0.1);
+    border: 1px outset #63b231;
+    border-radius: 3px;
+    box-shadow: 0 0 2px silver inset;
+}
+
 .m-info__cart a {
     text-decoration: none;
 }

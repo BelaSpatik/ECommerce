@@ -1,28 +1,32 @@
-import React, { useState } from "react"
+import React from "react"
 import './App.css';
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 import {NavBar} from './components/NavBar/NavBar' //como no es export default, va si o si con llaves y con el nombre con que fue inicializado
 import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
 
+import {CartProvider} from "./context/cartContext" //componente que tiene el CartContext.Provider
+
 function App() {
 
-  const [cart, setCart] = useState(0)
+  //const [cart, setCart] = useState(0)
 
   return (
     <div className="App">
       <BrowserRouter>
-      <NavBar cart={cart} />
+      <CartProvider>
+      <NavBar /*cart={cart}*/ />
       <Switch>
         <Route exact path="/">  {/*  "/category/:categoryId" - "/:categoryID?" - "/item/:id" */}
-        <ItemListContainer greeting="Página en construcción"/>
+        <ItemListContainer loading="Cargando..."/>
         </Route>
         <Route exact path="/category/:categoryId"> 
-        <ItemListContainer greeting="Página en construcción"/>
+        <ItemListContainer loading="Cargando..." noMatch="No se encontraron coincidencias" />
         </Route>
         <Route exact path="/item/:itemId">
-        <ItemDetailContainer cart={cart} setCart={setCart} />
-        </Route>
+          <ItemDetailContainer message="Cargando..." /*cart={cart} setCart={setCart}*/ />
+        </Route>       
+        
        {/*
        <header className="App-header">
         <img src={spinner} className="App-logo" alt="logo" />
@@ -38,6 +42,7 @@ function App() {
         </a>
       </header>*/}
       </Switch>
+      </CartProvider>
       </BrowserRouter>
     </div>
   );

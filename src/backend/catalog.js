@@ -240,6 +240,46 @@ const catalog = [
   }
 ];
 
+const categories = [
+  { catId: "01", name: "Literatura Universal" },
+  { catId: "08", name: "Ciencia Ficción" },
+  { catId: "15", name: "Ensayos" },
+  { catId: "22", name: "Educación" },
+  { catId: "02", name: "Literatura Latinoamericana" },
+  { catId: "09", name: "Policial y Suspenso" },
+  { catId: "16", name: "Historia" },
+  { catId: "23", name: "Salud" },
+  { catId: "03", name: "Literatura Argentina" },
+  { catId: "10", name: "Terror" },
+  { catId: "17", name: "Sociología" },
+  { catId: "24", name: "Música" },
+  { catId: "04", name: "Literatura Juvenil" },
+  { catId: "11", name: "Romance" },
+  { catId: "18", name: "Psicología" },
+  { catId: "25", name: "Cine" },
+  { catId: "05", name: "Literatura Infantil" },
+  { catId: "12", name: "Historietas" },
+  { catId: "19", name: "Política" },
+  { catId: "26", name: "Cocina" },
+  { catId: "06", name: "Poesía" },
+  { catId: "13", name: "Novela Histórica" },
+  { catId: "20", name: "Filosofía" },
+  { catId: "27", name: "Deportes" },
+  { catId: "07", name: "Teatro" },
+  { catId: "14", name: "Biografías" },
+  { catId: "21", name: "Economía" },
+  { catId: "28", name: "Humor" }
+]
+
+/*
+const otherCat = [
+  { catId: "29", name: "Drama"},
+  { catId: "30", name: "Cuentos" },
+  { catId: "31", name: "Distopía" },
+  { catId: "32", name: "Segunda Guerra Mundial" }
+]
+*/
+
 export const getCatalog = () => {
     return new Promise ((success, reject) => { //al ejecutar la promise en un useEffect, solo lo hace en el primer montaje
         setTimeout(() => {
@@ -254,4 +294,10 @@ export const getBookById = () => {
           success(catalog)
         }, 2000);
       });
+}
+
+export const getCategories = () => {
+  return new Promise ((success) => {
+    success(categories)
+  })
 }

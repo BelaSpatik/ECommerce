@@ -1,53 +1,62 @@
-import React, {useState, useEffect} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import "./itemdetail.css"
 import ItemCounter from "../ItemCounter/ItemCounter"
 import CartModal from "../CartModal/CartModal"
 import { Link, useParams } from "react-router-dom"
 import { GiRoundStar } from 'react-icons/gi';
 
-const ItemDetail = ({ item, cart, setCart }) => {
+import { CartContext } from "../../context/cartContext";
 
-    const [modal, setModal] = useState(false)
-    const [stock, setStock] = useState(item.stock)
-    const [addItems, setAddItems] = useState(0)
-    //const [cart, setCart] = useState(0)
 
-    //console.log(stock);
+const ItemDetail = ({ item }) => {
+  //cart, setCart
 
-    const {itemId} = useParams()
+  const {cart, setCart} = useContext(CartContext)
+  const {stock, setStock} = useContext(CartContext)
+
+  useEffect(()=> {  //set el stock del item sólo en el primer montaje
+    setStock(item.stock)
+  }, [setStock, item.stock])
   
-    useEffect(()=> {
-      //console.log("/:itemId ->", itemId)
-    }, [itemId])
+  const [modal, setModal] = useState(false)
+  const [addItems, setAddItems] = useState(0)
+  //const [stock, setStock] = useState(item.stock)
+  //const [cart, setCart] = useState(0)
 
-    useEffect(() => {
-      console.log("Added items:", addItems)
-    }, [addItems])
+  const {itemId} = useParams()
+  
+  useEffect(()=> {
+    //console.log("/:itemId ->", itemId)
+  }, [itemId])
 
-    useEffect(() => {
-      console.log("Stock:", stock)
-    }, [stock])
+  useEffect(() => {
+    //console.log("Added items:", addItems)
+  }, [addItems])
 
-    useEffect(() => {
-      console.log("Cart:", cart)
-    }, [cart])
+  useEffect(() => {
+    console.log("Stock:", stock)
+  }, [stock])
 
-    const favourite = () => {
-      let icon = document.querySelector(".favourite__icon");
-      let text = document.querySelector(".favourite__text");
-      if(icon.style.color === "white") {
-        icon.style.color = "gold";
-        text.innerText = "Mis favoritos"
-        text.style.border = "1px outset #63b231"
-        text.style.borderLeft = "none"
-        text.style.background = "linear-gradient(279deg, rgba(59,140,8,1) 0%, rgba(99,178,49,1) 49%, rgba(59,140,8,1) 82%)"
-      } else {
-        icon.style.color = "white";
-        text.innerText = "Agregar a favoritos";
-        text.style.background = "black";
-        text.style.border = "1px solid red"
-      }}
+  useEffect(() => {
+    //console.log("Cart:", cart)
+  }, [cart])
 
+  const favourite = () => {
+    let icon = document.querySelector(".favourite__icon");
+    let text = document.querySelector(".favourite__text");
+    if(icon.style.color === "white") {
+      icon.style.color = "gold";
+      text.innerText = "Mis favoritos"
+      text.style.border = "1px outset #63b231"
+      text.style.borderLeft = "none"
+      text.style.background = "linear-gradient(279deg, rgba(59,140,8,1) 0%, rgba(99,178,49,1) 49%, rgba(59,140,8,1) 82%)"
+    } else {
+      icon.style.color = "white";
+      text.innerText = "Agregar a favoritos";
+      text.style.background = "black";
+      text.style.border = "1px solid red"
+    }
+  }
   return (
     <div className={"item__detail"}>
       <div className={"detail__photo"}>

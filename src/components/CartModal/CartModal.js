@@ -5,6 +5,7 @@ import "./cartmodal.css"
 
 const CartModal = ({item, setModal, addItems, setAddItems, stock, setStock, cart, setCart, itemId}) => {
 
+    const [purchase, setPurchase] = useState({})
     const [goCart, setGoCart] = useState(false)
 
     const exit = () => {
@@ -12,16 +13,27 @@ const CartModal = ({item, setModal, addItems, setAddItems, stock, setStock, cart
         setModal(false)
     }
 
+    useEffect(() => {
+        setPurchase(
+        {   item: {
+                bookId: itemId,
+                name: item.name
+            },
+            quantity: addItems 
+        })
+    }, [itemId, item.name, addItems])
+    
     const confirm = () => {
         const button = document.querySelector(".cart__confirm");
-        button.style.border = "1px outset #63b231"
-        /*button.style.padding = "4px"*/
-        button.style.backgroundColor = "rgba(99, 178, 49, 0.1)"
-        button.style.borderRadius = "3px"
-        button.style.boxShadow = "0 0 2px silver inset"
         button.innerHTML = 'Confirmando <img class="loading" src="/images/greenloading.gif"}>'
+        button.classList.add("loading-state")
         setStock(stock - addItems);
-        setCart(cart + addItems)
+        //setCart(cart + addItems)
+        const mergeDuplicate = () => {
+            const searchIdInCart = cart.find(ticket => ticket.item.bookId === itemId)
+            searchIdInCart ? searchIdInCart.quantity += addItems : setCart(cart => [...cart, purchase]) 
+        }
+        !cart.length ? setCart(cart => [...cart, purchase]) : mergeDuplicate()
         setTimeout(() => {
             setGoCart(true)
         }, 1000);

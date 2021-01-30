@@ -1,12 +1,24 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import './navbar.css'
+import { getCategories } from "../../backend/catalog"
 import CartWidget from '../CartWidget/CartWidget'
 import { Link } from "react-router-dom"
 import { BiDownArrow, BiSearchAlt2 } from "react-icons/bi"
 import { IconContext } from "react-icons"
 import { IoIosArrowDown } from "react-icons/io"
 
-export const NavBar = ({cart}) => {  //export default si yo después voy a tener + funciones
+
+export const NavBar = () => {  
+    //{cart}
+
+    const [categories, setCategories] = useState([])
+
+    useEffect(()=> {
+        getCategories().then((result) => {
+        setCategories(result) })
+        console.log(categories)
+    }, [categories])
+
     return (
         <nav className="navbar">
             <Link to={"/"}><img src={process.env.PUBLIC_URL + "/images/addenda1.png"} className="navbar__logo" alt="logo" /></Link>
@@ -18,90 +30,13 @@ export const NavBar = ({cart}) => {  //export default si yo después voy a tener
                 <IconContext.Provider value= { {className: "catalogo__icon"}}>
                     <a className="menu__link link" href="#catalogo">Catálogo<IoIosArrowDown/></a>
                     <ul className="catalogo__dropdown">
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/01"}>Literatura Universal</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/08"}>Ciencia Ficción</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/15"}>Ensayos</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/22"}>Educación</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/02"}>Literatura Latinoamericana</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/09"}>Policial y Suspenso</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/16"}>Historia</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/23"}>Salud</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/03"}>Literatura Argentina</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/10"}>Terror</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/17"}>Sociología</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/24"}>Música</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/04"}>Literatura Juvenil</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/11"}>Romance</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/18"}>Psicología</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/25"}>Cine</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/05"}>Literatura Infantil</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/12"}>Historietas</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/19"}>Política</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/26"}>Cocina</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/06"}>Poesía</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/13"}>Novela Histórica</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/20"}>Filosofía</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/27"}>Deportes</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/07"}>Teatro</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/14"}>Biografías</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/21"}>Economía</Link>
-                        </li>
-                        <li className="cat-dropdown__item">
-                            <Link to={"/category/28"}>Humor</Link>
-                        </li>
+                        { categories.map((category) => {
+                            return (
+                                <li className="cat-dropdown__item" key={category.catId}>
+                                   <Link to={`/category/${category.catId}`}>{category.name}</Link>
+                                </li> )
+                            })
+                        }
                     </ul>
                 </IconContext.Provider>
                 </li>
@@ -109,11 +44,13 @@ export const NavBar = ({cart}) => {  //export default si yo después voy a tener
                     <a className="menu__link link" href="#ubicacion">Ubicación</a>
                 </li>
                 <li className="menu__item">
-                    <a className="menu__link link" href="#contacto">Contacto</a>
+                <Link to={"/prueba"}>
+                    <span className="menu__link link" href="#contacto">Contacto</span>
+                </Link>
                 </li>
             </ul>
             <div className="navbar__user">
-                <CartWidget cart={cart} />
+                <CartWidget /*cart={cart}*/ />
                 <IconContext.Provider value= { {className: "user__arrowicon" }}>
                 <div className="user__tab">Nombre.usuario
                 <BiDownArrow/>
