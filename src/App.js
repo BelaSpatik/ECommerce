@@ -24,7 +24,7 @@ function App() {
         <ItemListContainer loading="Cargando..." noMatch="No se encontraron coincidencias" />
         </Route>
         <Route exact path="/item/:itemId">
-          <ItemDetailContainer message="Cargando..." /*cart={cart} setCart={setCart}*/ />
+          <ItemDetailContainer loading="Cargando..." /*cart={cart} setCart={setCart}*/ />
         </Route>       
         
        {/*

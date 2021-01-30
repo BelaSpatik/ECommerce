@@ -4,7 +4,7 @@ import {getBookById} from "../../backend/catalog"
 import ItemDetail from "../ItemDetail/ItemDetail";
 import Loading from "../Loading/Loading"
 
-const ItemDetailContainer = ({message}) => {
+const ItemDetailContainer = ({loading}) => {
   //{cart, setCart}
   const [item, setItem] = useState({});
 
@@ -22,7 +22,7 @@ const ItemDetailContainer = ({message}) => {
     <>
     { item.hasOwnProperty("id") ? 
     <ItemDetail item={item}/> /*cart={cart} setCart={setCart}*/ 
-    : <Loading message={message} /> 
+    : <Loading loading={loading} /> 
     }
     </>
   )
