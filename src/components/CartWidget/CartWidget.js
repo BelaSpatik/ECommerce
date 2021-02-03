@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import './cartwidget.css'
 import { TiShoppingCart } from "react-icons/ti";
 import { IconContext } from "react-icons";
@@ -11,26 +11,27 @@ const CartWidget = () => {
     //{cart}
     const {cart} = useContext(CartContext)
 
-    let totalItems = [];
+    let totalItems = []
     let sum = 0
 
     const cartCounter = () => {
         cart.map(purchase => {
             return totalItems.push(purchase.quantity)
         })
-        totalItems.length < 2 ?
-        sum = totalItems[0]
+        totalItems.length < 2 ? sum = (totalItems[0])
         :
         totalItems.reduce((accumulator, currentValue) => {
-            return sum = accumulator + currentValue
+            return sum = (accumulator + currentValue)
         })
     }
 
-    cart.length && cartCounter()
+    useEffect(() => {
+        console.log("CartWIDGET cart:", cart)
+    }, [cart])
 
-    console.log("Cart:", cart)
+    cart.length && cartCounter()
     console.log("Array cantidad:", totalItems)
-    console.log("Total", sum)
+    //console.log("Total", sum)
 
     return (
         

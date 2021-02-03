@@ -91,11 +91,8 @@ const ItemDetail = ({ item }) => {
         </p>
         <p className="d-info__synopsis">
         { !item.genre ? null
-        :
-        typeof item.synopsis === "string" ?
-        item.synopsis
-        :
-        item.synopsis.map((parragraph) => {
+        : typeof item.synopsis === "string" ? item.synopsis
+        : item.synopsis.map((parragraph) => {
           return <span key={parragraph} className="parr">{parragraph}</span>
         })
         }

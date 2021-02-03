@@ -11,7 +11,7 @@ const CartModal = ({item, setModal, addItems, setAddItems, stock, setStock, cart
     const [purchase, setPurchase] = useState({})
     const [goCart, setGoCart] = useState(false)
 
-    const {searchIdInCart, addMoreToCart} = useContext(CartContext)
+    const {searchIdInCart, addMoreToCart, addProduct, mergeDuplicate} = useContext(CartContext)
 
     const exit = () => {
         setAddItems(addItems - addItems)
@@ -21,7 +21,7 @@ const CartModal = ({item, setModal, addItems, setAddItems, stock, setStock, cart
     useEffect(() => {
         setPurchase(
         {   item: {
-                bookId: itemId,
+                bookId: item.id,
                 picture: item.pictureurl,
                 name: item.name,
                 author: item.author,
@@ -35,19 +35,18 @@ const CartModal = ({item, setModal, addItems, setAddItems, stock, setStock, cart
     }, [itemId, item.name, addItems])
     
     const confirm = () => {
+        //addProduct(purchase)
         const button = document.querySelector(".cart__confirm");
         button.innerHTML = 'Confirmando <img class="loading" src="/images/greenloading.gif"}>'
         button.classList.add("loading-state")
         setStock(stock - addItems);
-        //setCart(cart + addItems)
+
+        mergeDuplicate(purchase, item.id, addItems)
+        
         //const mergeDuplicate = () => {
-        //    const searchIdInCart = cart.find(ticket => ticket.item.bookId === itemId)
-        //    searchIdInCart ? searchIdInCart.quantity += addItems : setCart(cart => [...cart, purchase]) 
+        //    searchIdInCart(itemId) ? addMoreToCart(itemId, addItems) : setCart(cart => [...cart, purchase])
         //}
-        const mergeDuplicate = () => {
-            searchIdInCart(itemId) ? addMoreToCart(itemId, addItems) : setCart(cart => [...cart, purchase])
-        }
-        !cart.length ? setCart(cart => [...cart, purchase]) : mergeDuplicate()
+        //!cart.length ? setCart(cart => [...cart, purchase]) : mergeDuplicate()
         setTimeout(() => {
             setGoCart(true)
         }, 1000);
