@@ -13,8 +13,7 @@ const ItemListContainer = ({loading, noMatch}) => {
     const {categoryId} = useParams()
 
     useEffect(()=> {  //Al cambiar el estado local, el componente se reenderiza y entra en loop [la promise siempre se deja para el final]
-        
-      getCatalog().then((result) => {
+        getCatalog().then((result) => {
         if(categoryId) {
           const filter = result.filter(book => book.genre.some((tags) => tags.catId === categoryId))
           filter.length ? setItems(filter) : setNotFound(true)
@@ -22,12 +21,13 @@ const ItemListContainer = ({loading, noMatch}) => {
           setItems(result)
         }
       })
+      return () => setItems([]) + setNotFound(false)
     }, [categoryId])
 
     console.log("ITEMS FILTER", items)
 
     return (
-      <div className={"item-list-display"}>
+      <div className="item-list-display">
         <ItemList items={items}/>
         { !items.length && !notFound ? <Loading loading={loading} /> : null }
         { !items.length && notFound ? <h1>{noMatch}</h1> : null }

@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import './cartwidget.css'
 import { TiShoppingCart } from "react-icons/ti";
 import { IconContext } from "react-icons";
+import { Link } from "react-router-dom"
 
 import { CartContext } from "../../context/cartContext"
 
@@ -32,14 +33,19 @@ const CartWidget = () => {
     console.log("Total", sum)
 
     return (
+        
         <div className="user__cart">
+            <Link to={"/cart"}>
             <IconContext.Provider value= { {className: "cart__icon" }}>
-                <a className="cart__link link" href="#home">Carrito<TiShoppingCart/></a>
+                <span className="cart__link link" href="#home">Carrito<TiShoppingCart/></span>
             </IconContext.Provider>
             <p className="cart__counter">Ítems: {sum}</p>
             {/* {cart}*/}
+            </Link>
         </div>
+
     )
+        
 }
 
 export default CartWidget

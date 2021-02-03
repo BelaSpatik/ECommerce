@@ -9,17 +9,18 @@ export const CartProvider = ({children}) => {
 
     const [stock, setStock] = useState() //se asigna valor inicial en ItemDetail
 
-    /*
+    const [addItems, setAddItems] = useState(0)
 
-    const searchIdInCart = (itemId) => { //es necesario repetir la constaste para pasar cada función a los children?
-        const searchIdInCart = cart.find(ticket => ticket.item.bookId === itemId) //itemId = useParams ?
-        searchIdInCart ? console.log("Item encontrando") : console.log("No se ha encontrado match")
+    const searchIdInCart = (itemId) => {
+        return cart.find(ticket => ticket.item.bookId === itemId)    
     }
 
     const addMoreToCart = (itemId, addItems) => {  //mergeDuplicate -> CartModal.js
-        const searchIdInCart = cart.find(ticket => ticket.item.bookId === itemId)
-        searchIdInCart && (searchIdInCart.quantity += addItems)
+        searchIdInCart(itemId).quantity += addItems
     }
+
+
+    /*
 
     const removeFromCart = (itemId, removeItems) => {
         const searchIdInCart = cart.find(ticket => ticket.item.bookId === itemId)  //itemId = useParams ?
@@ -32,7 +33,7 @@ export const CartProvider = ({children}) => {
     */
 
     return (
-        <CartContext.Provider value={{cart, setCart, stock, setStock}}>
+        <CartContext.Provider value={{cart, setCart, stock, setStock, addItems, setAddItems, searchIdInCart, addMoreToCart}}>
             {children}
         </CartContext.Provider>
     )

@@ -1,12 +1,11 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import "./itemcounter.css"
 import { AiFillPlusSquare, AiFillMinusSquare } from "react-icons/ai";
 import { TiShoppingCart } from "react-icons/ti";
 
-const ItemCounter = ({initial, stock, setModal, setAddItems}) => {
-    //counter, sum, substr
+const ItemCounter = ({initial, stock, onAdd}) => {
+    //setModal, setAddItems
 
-    //console.log(stock)
     const [counter, setCounter] = useState(initial);
 
     const sum = () => {
@@ -17,27 +16,37 @@ const ItemCounter = ({initial, stock, setModal, setAddItems}) => {
         counter >= initial && setCounter(counter - 1)
     };
 
-    const onAdd = () => {
+    /*const onAdd = () => {
         setModal(true);
-        setAddItems(counter)
+        setAddItems(counter) 
+    }*/
+
+    const onAddActive = () => {
+        onAdd(counter)
     }
+
+    useEffect(() => {
+        stock === 0 && setCounter(0)
+        return () => {setCounter(initial)}
+    }, [stock, initial])
 
     return (
         <div className="item-counter">
             <div className="counter-controls">
-            <button onClick={substr} className="button" disabled={counter === 0}>
-            <AiFillMinusSquare className={"minus-icon"}/>
-            </button>
-            <span className="counter">
-                {counter}
-            </span>
-            <button onClick={sum} className="button" disabled={counter === stock}>
-            <AiFillPlusSquare className={"plus-icon"}/>
-            </button>
+                <button onClick={substr} className="button" disabled={counter === 0  || stock === 0}>
+                    <AiFillMinusSquare className={"minus-icon"}/>
+                </button>
+                <span className="counter">{counter}</span>
+                <button onClick={sum} className="button" disabled={counter === stock || stock === 0}>
+                    <AiFillPlusSquare className={"plus-icon"}/>
+                </button>
             </div>
-            <button className="add-item" disabled={counter === 0} onClick={onAdd}>
-                Agregar{counter > 0 && ` ${counter}`}<TiShoppingCart className={"cart-icon"}/>
+            { stock > 0 ?
+            <button className="add-item" disabled={counter === 0} onClick={onAddActive}>
+                Agregar {counter > 0 && ` ${counter}`}<TiShoppingCart className="cart-icon"/>
             </button>
+            : <button className="add-item" disabled>Sin stock</button>
+            }
         </div>
     )
 }

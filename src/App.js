@@ -4,6 +4,7 @@ import {BrowserRouter, Switch, Route} from "react-router-dom"
 import {NavBar} from './components/NavBar/NavBar' //como no es export default, va si o si con llaves y con el nombre con que fue inicializado
 import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
+import CartView from "./components/CartView/CartView"
 
 import {CartProvider} from "./context/cartContext" //componente que tiene el CartContext.Provider
 
@@ -25,7 +26,11 @@ function App() {
         </Route>
         <Route exact path="/item/:itemId">
           <ItemDetailContainer loading="Cargando..." /*cart={cart} setCart={setCart}*/ />
-        </Route>       
+        </Route> 
+        <Route exact path="/cart">
+          <CartView loading="Cargando..." /*cart={cart} setCart={setCart}*/ />
+        </Route> 
+
         
        {/*
        <header className="App-header">

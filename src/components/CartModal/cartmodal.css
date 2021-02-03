@@ -150,7 +150,7 @@
 }
 
 .cart__goCart {
-    padding: 5px;
+    padding: 3px 5px;
     background-color: rgba(99, 178, 49, 0.1);
     border: 1px outset #63b231
 }
