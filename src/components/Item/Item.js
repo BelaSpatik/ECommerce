@@ -9,7 +9,7 @@ const Item = ({item}) => {
         <React.Fragment>
         <div key={item.id}  className={"item__div"}>
         <Link to={`/item/${item.id}`} >
-            <img src={item.pictureurl} className={"item__cover"} alt="book-cover"></img> 
+            <img src={process.env.PUBLIC_URL + item.pictureurl} /*src={item.pictureurl}*/ className={"item__cover"} alt="book-cover"></img> 
         </Link>
             <div className={"item__info"}>
                 <span className={"info__title"}>{item.name}</span>

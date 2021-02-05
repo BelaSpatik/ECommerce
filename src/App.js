@@ -6,6 +6,9 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
 import CartView from "./components/CartView/CartView"
 
+import ContainerPrueba from "./components/ContainerPrueba/ContainerPrueba"
+
+
 import {CartProvider} from "./context/cartContext" //componente que tiene el CartContext.Provider
 
 function App() {
@@ -29,6 +32,9 @@ function App() {
         </Route> 
         <Route exact path="/cart">
           <CartView loading="Cargando..." /*cart={cart} setCart={setCart}*/ />
+        </Route> 
+        <Route exact path="/prueba">
+          <ContainerPrueba/>
         </Route> 
 
         

@@ -141,7 +141,7 @@ const catalog = [
   },
   {
     id: 8,
-    name: "Orgullo y Prejuicio",
+    name: "Orgullo y prejuicio",
     author: "Jane Austen",
     stock: 7,
     synopsis:
@@ -161,7 +161,7 @@ const catalog = [
   },
   {
     id: 9,
-    name: "Pédro Páramo",
+    name: "Pedro Páramo",
     author: "Juan Rulfo",
     stock: 5,
     synopsis:
@@ -199,8 +199,8 @@ const catalog = [
   },
   {
     id: 11,
-    name: "Teatro Completo",
-    author: "Ánton Chejov",
+    name: "Teatro completo",
+    author: "Anton Chejov",
     stock: 3,
     synopsis:
     ["Chejov refleja en su obra las contradicciones de la vida social de su país en las postrimerías del siglo XIX y vísperas de la revolución democrática burguesa de 1905 a 1907. Describe irónica y despiadadamente la degradación paulatina, tanto económica como cultural, de la nobleza latifundista, centrando su atención en la suerte de su propio estamento social.", "Chejov introdujo un cambio radical en las formas de la dramaturgia, dando a la acción dramática una estructura nueva capaz de abarcar cualquier manifestación de la vida. Con una simple sucesión de cuadros cotidianos logra impresiones generales, a veces de una gran intensidad."],
@@ -219,7 +219,7 @@ const catalog = [
   },
   {
     id: 12,
-    name: "Narraciones Extraordinarias",
+    name: "Narraciones extraordinarias",
     author: "Edgar Allan Poe",
     stock: 2,
     synopsis:

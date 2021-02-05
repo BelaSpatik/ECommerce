@@ -69,7 +69,7 @@ const ItemDetail = ({ item }) => {
   return (
     <div className="item__detail">
       <div className="detail__photo">
-        <img src={item.pictureurl} alt="foto de portada"/>
+        <img src={process.env.PUBLIC_URL + item.pictureurl} /*src={item.pictureurl}*/ alt="foto de portada"/>
         <span className="photo__favourite">
           <GiRoundStar onClick={favourite} className="favourite__icon"/>
           <p className="favourite__text">Agregar a favoritos</p>

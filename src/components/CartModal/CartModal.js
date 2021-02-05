@@ -37,7 +37,7 @@ const CartModal = ({item, setModal, setAddItems, stock, setStock, cart, setCart,
         <div className="modal__div">
             <div className="cart__modal">
             <button className="modal__exit" onClick={exit}>X</button>
-            <img className="modal__cover" src={item.pictureurl} alt="foto de portada"/>
+            <img className="modal__cover" src={process.env.PUBLIC_URL + item.pictureurl} /*src={item.pictureurl}*/ alt="foto de portada"/>
             <div className="modal__info">
                 <div className="m-info__item">
                     <h1 className="item__name">{item.name}</h1>

@@ -1,23 +1,38 @@
 import React, {useState, useEffect} from 'react'
 import './navbar.css'
-import { getCategories } from "../../backend/catalog"
 import CartWidget from '../CartWidget/CartWidget'
 import { Link } from "react-router-dom"
 import { BiDownArrow, BiSearchAlt2 } from "react-icons/bi"
 import { IconContext } from "react-icons"
 import { IoIosArrowDown } from "react-icons/io"
-
+//import { getCategories } from "../../backend/catalog"
+import { getCategories } from "../../firebase"
 
 export const NavBar = () => {  
-    //{cart}
 
     const [categories, setCategories] = useState([])
-
+    /*
     useEffect(()=> {
         getCategories().then((result) => {
         setCategories(result) })
         console.log(categories)
     }, [categories])
+    */
+
+   useEffect(() => {
+       getCategories() 
+       .then((querySnapshot) => {
+           querySnapshot.size === 0 && console.log("No hay resultados")
+           let result = querySnapshot.docs.map(doc => {
+               return ({
+                   catId: doc.id,
+                   ...doc.data()
+                })
+            })
+            console.log("Resultado:", result)
+            setCategories(result)
+        })
+    }, [  ])
 
     return (
         <nav className="navbar">
@@ -31,7 +46,7 @@ export const NavBar = () => {
                     <a className="menu__link link" href="#catalogo">Catálogo<IoIosArrowDown/></a>
                     <ul className="catalogo__dropdown">
                         { categories.map((category) => {
-                            return (
+                            return ( 
                                 <li className="cat-dropdown__item" key={category.catId}>
                                    <Link to={`/category/${category.catId}`}>{category.name}</Link>
                                 </li> )

@@ -45,7 +45,7 @@ const CartItem = ({purchase}) => {
     return (
         <li className="itemlist__item" key={purchase.item.bookId} >
             <div className="item__data">
-                <img className="item__cover cover__view" src={purchase.item.picture} alt="portada" />
+                <img className="item__cover cover__view" src={process.env.PUBLIC_URL + purchase.item.picture} /*src={purchase.item.picture}*/ alt="portada" />
                 <div className="data__main">
                     <h2>{purchase.item.name}</h2>
                     <h3>{purchase.item.author}</h3>
