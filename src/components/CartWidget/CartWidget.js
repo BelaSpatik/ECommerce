@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useContext} from 'react'
 import './cartwidget.css'
 import { TiShoppingCart } from "react-icons/ti";
 import { IconContext } from "react-icons";
@@ -9,29 +9,11 @@ import { CartContext } from "../../context/cartContext"
 
 const CartWidget = () => {
     //{cart}
-    const {cart} = useContext(CartContext)
+    const {cart, cartCounter} = useContext(CartContext)
 
-    let totalItems = []
-    let sum = 0
-
-    const cartCounter = () => {
-        cart.map(purchase => {
-            return totalItems.push(purchase.quantity)
-        })
-        totalItems.length < 2 ? sum = (totalItems[0])
-        :
-        totalItems.reduce((accumulator, currentValue) => {
-            return sum = (accumulator + currentValue)
-        })
-    }
-
-    useEffect(() => {
-        console.log("CartWIDGET cart:", cart)
-    }, [cart])
+    const cartItems = cartCounter()
 
     cart.length && cartCounter()
-    console.log("Array cantidad:", totalItems)
-    //console.log("Total", sum)
 
     return (
         
@@ -40,7 +22,7 @@ const CartWidget = () => {
             <IconContext.Provider value= { {className: "cart__icon" }}>
                 <span className="cart__link link" href="#home">Carrito<TiShoppingCart/></span>
             </IconContext.Provider>
-            <p className="cart__counter">Ítems: {sum}</p>
+            <p className="cart__counter">Ítems: {cartItems ? cartItems : 0}</p>
             {/* {cart}*/}
             </Link>
         </div>

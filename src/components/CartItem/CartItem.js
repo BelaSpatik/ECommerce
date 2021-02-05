@@ -1,15 +1,14 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useState, useContext} from 'react'
 import "./cartitem.css"
 import { CartContext } from "../../context/cartContext";
 import { VscTrash } from "react-icons/vsc"
 import { AiFillPlusSquare, AiFillMinusSquare } from "react-icons/ai";
 
 
-const CartItem = ({purchase, index}) => {
-
-    const {addItems, setAddItems} = useContext(CartContext)
-
-    const {searchIdInCart, changeQuantity, removeFromCart} = useContext(CartContext)
+const CartItem = ({purchase}) => {
+    //index
+    
+    const {changeQuantity, removeFromCart} = useContext(CartContext)
 
     const [counter, setCounter] = useState(0)
 
@@ -35,9 +34,9 @@ const CartItem = ({purchase, index}) => {
         counter > 1 && setCounter(counter - 1)
     }
 
-    const remove = (index) => {
-        removeFromCart(index)
-        console.log("INDEX", index)
+    const remove = (itemId) => {
+        removeFromCart(itemId)
+        //console.log("INDEX", index)
     }
 
     //onClick={ () => editing(purchase.item.bookId)} 
@@ -46,7 +45,7 @@ const CartItem = ({purchase, index}) => {
     return (
         <li className="itemlist__item" key={purchase.item.bookId} >
             <div className="item__data">
-                <img className="item__cover cover__view" src={purchase.item.picture}/>
+                <img className="item__cover cover__view" src={purchase.item.picture} alt="portada" />
                 <div className="data__main">
                     <h2>{purchase.item.name}</h2>
                     <h3>{purchase.item.author}</h3>
@@ -55,8 +54,8 @@ const CartItem = ({purchase, index}) => {
                 </div>
             </div>
             <div className="item__edit"> 
-                { !edit ? <a onClick={() => editing(purchase.quantity)} >Editar</a> 
-                : <a onClick={() => save(purchase.item.bookId)}>Guardar</a> }
+                { !edit ? <button onClick={() => editing(purchase.quantity)} >Editar</button> 
+                : <button onClick={() => save(purchase.item.bookId)}>Guardar</button> }
             </div>
             <div className="item__pricee">
                 <span>AR$ {purchase.item.price}</span>
@@ -79,7 +78,7 @@ const CartItem = ({purchase, index}) => {
                 <span>AR$ {purchase.item.price * purchase.quantity}</span>
             </div>
             <div className="item__remove">
-                <button onClick={() => remove(index)}><VscTrash/></button>
+                <button onClick={() => remove(purchase.item.bookId)}><VscTrash/></button>
             </div>
         </li>
     )

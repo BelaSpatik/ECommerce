@@ -20,9 +20,7 @@ const ItemDetail = ({ item }) => {
   }, [setStock, item.stock])
   
   const [modal, setModal] = useState(false)
-  //const [addItems, setAddItems] = useState(0)
   //const [stock, setStock] = useState(item.stock)
-  //const [cart, setCart] = useState(0)
 
   const {itemId} = useParams()
 
@@ -82,20 +80,16 @@ const ItemDetail = ({ item }) => {
         <h2 className="d-info__author">{item.author}</h2>
         <p className="d-info__tags">Categorías: 
          { item.genre !== undefined && item.genre.map((tags) => {
-          return (
-          <Link key={tags.catId} to={`/category/${tags.catId}`}>
-            <span>{tags.name}</span>
-          </Link>)
-         })
+          return ( <Link key={tags.catId} to={`/category/${tags.catId}`}>
+            <span>{tags.name}</span> </Link>) 
+          })
          }
         </p>
         <p className="d-info__synopsis">
-        { !item.genre ? null
-        : typeof item.synopsis === "string" ? item.synopsis
-        : item.synopsis.map((parragraph) => {
-          return <span key={parragraph} className="parr">{parragraph}</span>
-        })
-        }
+          { !item.genre ? null : typeof item.synopsis === "string" ? item.synopsis
+          : item.synopsis.map((parragraph) => {
+          return <span key={parragraph} className="parr">{parragraph}</span>})
+          }
         </p>
         <div className="detail__footer">
           <div className="detail__f-tecnica">
@@ -105,22 +99,17 @@ const ItemDetail = ({ item }) => {
             <p>Encuadernación: {item.encuadernacion}</p>
             <p>ISBN: {item.isbn}</p>
             { item.traduccion && 
-            <p>Traducción: {item.traduccion}</p>
-            }
+                <p>Traducción: {item.traduccion}</p> }
             { item.ilustracion && 
-            <p>Ilustración: {item.ilustracion}</p>
-            }
+                <p>Ilustración: {item.ilustracion}</p> }
           </div>
           <div className="detail__itemcounter">
-          <ItemCounter initial={1} stock={stock} onAdd={onAdd} /*setModal={setModal} setAddItems={setAddItems}*/ /> 
+            <ItemCounter initial={1} stock={stock} onAdd={onAdd} /*setModal={setModal} setAddItems={setAddItems}*/ /> 
           </div>
         </div>
       </div> 
-      { modal ? 
-      <CartModal 
-      item={item} setModal={setModal} addItems={addItems} setAddItems={setAddItems}
-      stock={stock} setStock={setStock} cart={cart} setCart={setCart} itemId={itemId} /> 
-      : null }
+      { modal ? <CartModal item={item} setModal={setModal} addItems={addItems} setAddItems={setAddItems}
+      stock={stock} setStock={setStock} cart={cart} setCart={setCart} itemId={itemId} /> : null }
     </div>
   )
 }

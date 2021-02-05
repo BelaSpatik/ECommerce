@@ -1,34 +1,40 @@
 * {
     box-sizing: border-box;
 }
+
+.cartview__div button {
+    cursor: pointer;
+}
+
 .cartview__div {
     width: 90%;
     height: 100vh;
     margin: auto;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; 
     border-top: 8px solid black;
     border-left: 8px solid #63b231;
     border-right: 8px solid #63b231;
+    border-bottom: 20px solid rgba(0, 0, 0, 0.09);
     background-color: rgba(0, 0, 0, 0.18);
-    /*border-right: 8px solid #63b231;*/
     box-shadow: 0px 0px 50px rgb(75, 72, 72);
-
 }
 
 .cartview__display {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*width: 80%;*/
+    /*justify-content: center;*/
     width: 100%;
     padding: 0px 50px;
     color: white;
-    height: 100%;
-    /*border: 1px solid red;*/
+    /*height: 100%;*/
     margin-bottom: 30px;
+}
+
+.cartview__firstrow {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .cartview__display h1 {
@@ -37,10 +43,27 @@
     align-items: center;
 }
 
+.title__number {
+    margin-left: 5px;
+    font-size: 20px; 
+    font-weight: lighter;
+}
+
+.cartview__favourite {
+    align-self: center;
+    display: flex;
+    align-items: center;
+}
+
+.cartview__icon {
+    color: #63b231;
+    margin-left: 5px;  
+}
+
 .grid__banner {
     width: 100%;
     display: grid;
-    grid-template-columns: 50% 10% 10% 15% 10% 5%;
+    grid-template-columns: 50% 10% 11% 13% 11% 5%;
     padding: 10px 0px;
     border: 1px solid white;
     background-color: rgba(0, 0, 0, 0.2);
@@ -52,6 +75,17 @@
     text-align: left;
 }
 
+.cartview__notFound {
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+}
+
+.cartview__notFound img {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
 .grid__itemlist {
     width: 99%;
     padding: 0px;
@@ -59,4 +93,55 @@
     border-left: 2px solid white;
     /*background-color: rgba(0, 0, 0, 0.2);
     border: 1px solid blue*/
+}
+
+.cartview__controls {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+    align-items: center;
+    border-top: 1px solid white;
+}
+
+.cartview__button {
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    font-weight: 550;
+    font-size: 15px;
+    border-radius: 3px;
+    border: 1px solid rgb(99, 178, 49);
+    box-shadow: 0px 0px 3px #63b231 inset;
+}
+
+.cartview__controls button:hover {
+    color: #63b231;
+    background-color: black;
+}
+
+.controls__total {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    border-right: 1px solid white;
+
+}
+
+.total__row {
+    width: 81.5%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px;
+    padding-left: 30px;
+    /*border-bottom: 1px groove white;*/
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 1px -1px 2px #63b231 inset;
+}
+
+.span__price {
+    color: #63b231;
 }

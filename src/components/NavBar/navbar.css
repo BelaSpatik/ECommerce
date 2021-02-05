@@ -62,6 +62,7 @@ select:focus, input:focus{
     background-color: black;
     padding: 8px 0px;
     box-shadow: 0px 2px 5px black;
+    z-index: 1
 }
 
 .catalogo:hover .catalogo__dropdown {

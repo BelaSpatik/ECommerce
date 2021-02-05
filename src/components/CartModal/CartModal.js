@@ -6,49 +6,26 @@ import "./cartmodal.css"
 import { CartContext } from "../../context/cartContext";
 
 
-const CartModal = ({item, setModal, addItems, setAddItems, stock, setStock, cart, setCart, itemId}) => {
+const CartModal = ({item, setModal, setAddItems, stock, setStock, cart, setCart, itemId}) => {
+    //addItems
 
-    const [purchase, setPurchase] = useState({})
     const [goCart, setGoCart] = useState(false)
 
-    const {searchIdInCart, addMoreToCart, addProduct, mergeDuplicate} = useContext(CartContext)
+    const {addItems, addProduct} = useContext(CartContext)
 
     const exit = () => {
         setAddItems(addItems - addItems)
         setModal(false)
     }
-
-    useEffect(() => {
-        setPurchase(
-        {   item: {
-                bookId: item.id,
-                picture: item.pictureurl,
-                name: item.name,
-                author: item.author,
-                price: item.price,
-                stock: item.stock,
-                editorial: item.editorial,
-                isbn: item.isbn
-            },
-            quantity: addItems 
-        })
-    }, [itemId, item.name, addItems])
     
     const confirm = () => {
-        //addProduct(purchase)
         const button = document.querySelector(".cart__confirm");
         button.innerHTML = 'Confirmando <img class="loading" src="/images/greenloading.gif"}>'
         button.classList.add("loading-state")
         setStock(stock - addItems);
-
-        mergeDuplicate(purchase, item.id, addItems)
-        
-        //const mergeDuplicate = () => {
-        //    searchIdInCart(itemId) ? addMoreToCart(itemId, addItems) : setCart(cart => [...cart, purchase])
-        //}
-        //!cart.length ? setCart(cart => [...cart, purchase]) : mergeDuplicate()
+        addProduct(item, addItems)
         setTimeout(() => {
-            setGoCart(true)
+            setGoCart(true) 
         }, 1000);
     }
 

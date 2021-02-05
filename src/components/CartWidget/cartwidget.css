@@ -1,7 +1,8 @@
 
 .user__cart {
     position: relative;
-    transition: transform .2s linear
+    transition: transform .2s linear;
+    margin-right: 10px;
 }
 
 .user__cart a {

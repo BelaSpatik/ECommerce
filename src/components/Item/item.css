@@ -41,6 +41,7 @@
     /*height: 26px;*/
     height: 30px;
     overflow: auto;
+    font-size: 23px;
     font-weight: bold;
     background-color: white;
     border-left: 1px solid black;

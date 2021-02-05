@@ -30,6 +30,7 @@
 
 .button {
     padding: 0px;
+    padding-bottom: 5px;
     margin: 0px;
     background-color: white;
     border: none;
@@ -37,6 +38,7 @@
 
 .plus-icon, .minus-icon {
     padding: 0px;
+    padding-bottom: 2px;
     margin: 0px;
     font-size: 30px;
     color: #63b231;
@@ -71,7 +73,6 @@
 
 .add-item:disabled .cart-icon {
     color: white;
-
 }
 
 .cart-icon {

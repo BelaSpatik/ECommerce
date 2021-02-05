@@ -1,3 +1,7 @@
+.loading__div {
+  margin: 55px auto;
+}
+
 .message__title {
     color: white;
 }
