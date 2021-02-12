@@ -72,7 +72,7 @@ const CartOrder = ({cart, total}) => {
     }, [userInfo])
 
     useEffect(() => {
-        orderId && updateStock()
+        //orderId && updateStock()
     },[orderId])
 
     const slide = useSpring({

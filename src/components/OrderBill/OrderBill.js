@@ -18,7 +18,7 @@ const OrderBill = ({ userInfo, cart, orderId}) => {
     console.log(userInfo)
 
     return (
-        <div className="orderbill__div">
+        <div className="orderbill__div" name="billing">
             <p style={{color: "white"}}>Gracias por tu compra {userInfo.fullname}.</p>
             <span style={{color: "white"}}>Esté es el código de tu pedido: 
                 <input value={orderId} ref={inputRef} readonly className="orderId"/>

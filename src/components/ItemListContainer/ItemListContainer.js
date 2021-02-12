@@ -20,9 +20,9 @@ const ItemListContainer = ({loading, noMatch}) => {
       let catalog;
 
       if(categoryId) { // = result.filter(book => book.genre.some((tags) => tags.catId === categoryId))
-        catalog = db.collection("catalog").where("categoryId", "array-contains", categoryId)
+        catalog = db.collection("catalog").where("categoryId", "array-contains", categoryId).where("stock", ">", 0)
       } else {
-        catalog = db.collection("catalog");
+        catalog = db.collection("catalog").where("stock", ">", 0)
       }
 
       catalog.get().then((querySnapshot) => {
