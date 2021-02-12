@@ -8,7 +8,7 @@
 
 .cartview__div {
     width: 90%;
-    height: 100vh;
+    /*height: 100vh;*/
     margin: auto;
     display: flex;
     border-top: 8px solid black;
@@ -96,6 +96,7 @@
 }
 
 .cartview__controls {
+    position: relative;
     margin-top: 50px;
     width: 100%;
     display: flex;
@@ -103,6 +104,23 @@
     padding-left: 20px;
     align-items: center;
     border-top: 1px solid white;
+    /*border-left: 1px solid white;*/
+}
+
+.cartview__controls::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 36px;
+    height: 1px;
+    width: 65%;  /* percentage of the element width*/
+    border-bottom: 1px solid white;
+    animation: appear 3s 1 linear 
+}
+
+@keyframes appear {
+    from { width: 0%}
+    to { width: 65%}
 }
 
 .cartview__button {
@@ -116,6 +134,14 @@
     box-shadow: 0px 0px 3px #63b231 inset;
 }
 
+.align {
+    width: 40%;
+    margin-top: 25px;
+    align-self: flex-start;
+    display: flex;
+    justify-content: space-between;
+}
+
 .cartview__controls button:hover {
     color: #63b231;
     background-color: black;
@@ -127,8 +153,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
-    border-right: 1px solid white;
-
 }
 
 .total__row {
@@ -137,11 +161,17 @@
     justify-content: space-between;
     padding: 10px 10px;
     padding-left: 30px;
-    /*border-bottom: 1px groove white;*/
+    border-right: 1px solid white;
     background-color: rgba(0, 0, 0, 0.2);
     box-shadow: 1px -1px 2px #63b231 inset;
 }
 
 .span__price {
     color: #63b231;
+}
+
+.purchase {
+    position: relative;
+    margin-top: 30px;
+    z-index: 1
 }

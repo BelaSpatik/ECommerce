@@ -20,10 +20,19 @@ const app = firebase.default.initializeApp({  //firebase.initializeApp => no lo 
   }
 
   export function getCatalog() {
+    //categoryId
     const db = getFirestore();
     const catalog = db.collection("catalog");
-    return catalog.get()
+    //const catalog = db.collection("catalog").where("categoryId", "array-contains", categoryId)
+    return catalog.get() //una promise propia de firebase
   }
+
+  /*
+  export function getDetail(itemId) {
+    const db = getFirestore();
+    const catalog = db.collection("catalog").where("doc.id", "===", itemId) //????
+    return catalog.get() //una promise propia de firebase
+  }*/
 
   export function getCategories() {
     const db = getFirestore();

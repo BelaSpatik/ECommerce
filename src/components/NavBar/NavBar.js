@@ -32,7 +32,7 @@ export const NavBar = () => {
             console.log("Resultado:", result)
             setCategories(result)
         })
-    }, [  ])
+    }, [])
 
     return (
         <nav className="navbar">
@@ -46,7 +46,7 @@ export const NavBar = () => {
                     <a className="menu__link link" href="#catalogo">Catálogo<IoIosArrowDown/></a>
                     <ul className="catalogo__dropdown">
                         { categories.map((category) => {
-                            return ( 
+                            return (  //${category.catId}/${category.name}/${category.order}
                                 <li className="cat-dropdown__item" key={category.catId}>
                                    <Link to={`/category/${category.catId}`}>{category.name}</Link>
                                 </li> )

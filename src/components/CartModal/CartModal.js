@@ -6,12 +6,11 @@ import "./cartmodal.css"
 import { CartContext } from "../../context/cartContext";
 
 
-const CartModal = ({item, setModal, setAddItems, stock, setStock, cart, setCart, itemId}) => {
-    //addItems
+const CartModal = ({item, setModal, addItems, setAddItems, stock, setStock}) => {
 
     const [goCart, setGoCart] = useState(false)
 
-    const {addItems, addProduct} = useContext(CartContext)
+    const {addProduct} = useContext(CartContext)
 
     const exit = () => {
         setAddItems(addItems - addItems)

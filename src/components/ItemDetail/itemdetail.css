@@ -31,7 +31,7 @@
     margin-top: 5px;
 }
 
-.favourite__text {
+.favourite__add {
     padding: 5px;
     font-size: 18px;
     font-weight: 450;
@@ -40,6 +40,18 @@
     border: 1px solid red;
     color: white;
     background-color: black;
+}
+
+.favourite__added {
+    padding: 5px;
+    color: white;
+    font-size: 18px;
+    font-weight: 450;
+    margin: 0px;
+    border: 1px groove #63b231;
+    border-left: none;
+    border-radius: 5px;
+    background: linear-gradient(279deg, rgba(59,140,8,0.8) 0%, rgba(99,178,49,0.8) 49%, rgba(59,140,8,0.8) 82%)
 }
 
 .favourite__icon {

@@ -1,10 +1,10 @@
 
 .modal__div {
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
     width: 100vw;
-    height: 122%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,9 +13,6 @@
 
 .cart__modal {
     width: 50%;
-    /*position: absolute;
-    top: 40%;
-    left: 25%;*/
     display: flex;
     padding: 20px;
     padding-right: 15px;

@@ -6,9 +6,7 @@ export const CartProvider = ({children}) => {
 
     const [cart, setCart] = useState([])
 
-    const [stock, setStock] = useState() //se asigna valor inicial en ItemDetail
-
-    const [addItems, setAddItems] = useState(0)
+    const [stock, setStock] = useState() //Necesito stock para actualizar al instante el cartcounter. Se asigna valor inicial en ItemDetail
 
     const addProduct = (item, addItems) => { //Cart modal
         const purchase = {
@@ -39,8 +37,7 @@ export const CartProvider = ({children}) => {
     }
 
     const mergeDuplicate = (purchase, itemId, addItems) => { //cartModal
-        !cart.length ? setCart(cart => [...cart, purchase]) 
-        : searchIdInCart(itemId) ? addMoreToCart(itemId, addItems) : setCart(cart => [...cart, purchase])
+        cart.length && searchIdInCart(itemId) ? addMoreToCart(itemId, addItems) : setCart([...cart, purchase]) //crea un nuevo array para que note el cambio y reenderize (eso con push no pasa)
     }
 
     const changeQuantity = (itemId, counter) => {  //CartView
@@ -53,46 +50,23 @@ export const CartProvider = ({children}) => {
         const filtered = cart.filter(purchase =>  //si se pone entre llaves, necesita return
             purchase.item.bookId !== itemId
         )
-        searchIdInCart(itemId).counter +=  searchIdInCart(itemId).quantity
         setCart(filtered)
         // const index = cart.findIndex( item => {
         //    item.item.bookId === itemId
         //}) -> conseguir el index para el splice
-        //cart.splice(index, 1) 
         //setCart([...cart])
-        console.log("CART DPS SPLICE")
     }
 
     const cartCounter = () => { //CartWidget
-        let totalItems = []
-        let sum = 0;
-        cart.map(purchase => {
-            return totalItems.push(purchase.quantity)
-        })
-        console.log("Array cantidad:", totalItems)
-        totalItems.length < 2 ? sum = totalItems[0]
-        :
-        totalItems.reduce((accumulator, currentValue) => {
-            return sum = accumulator + currentValue
-        })
-        return sum
+        return cart.reduce((acc, purchase) => {
+            return acc + purchase.quantity
+        }, 0)
     }
 
     const total = () => { //CartView
-        //return cart.reduce((accumulator, {item.price, quantity}) => {
-        //    return (purchase.item.price * purchase.quantity) + accumulator
-        //})
-        let subtotal = []
-        let sum = 0
-        cart.map(purchase => {
-            return subtotal.push(purchase.item.price * purchase.quantity)
-        })
-        subtotal.length < 2 ? sum = (subtotal[0])
-        : subtotal.reduce((accumulator, currentValue) => {
-            return sum = (accumulator + currentValue)
-        })
-        console.log(sum)
-        return sum
+        return cart.reduce((acc, purchase) => {
+            return acc + purchase.item.price * purchase.quantity
+        }, 0) //valor inicial del array
     }
 
     const clearCart = () => {
@@ -103,7 +77,7 @@ export const CartProvider = ({children}) => {
 
 
     return (
-        <CartContext.Provider value={{cart, setCart, stock, setStock, addItems, setAddItems, searchIdInCart,
+        <CartContext.Provider value={{cart, setCart, searchIdInCart, stock, setStock,
           addMoreToCart, changeQuantity, removeFromCart, addProduct, mergeDuplicate, clearCart, total, cartCounter}}>
             {children}
         </CartContext.Provider>

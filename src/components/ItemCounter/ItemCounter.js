@@ -4,7 +4,6 @@ import { AiFillPlusSquare, AiFillMinusSquare } from "react-icons/ai";
 import { TiShoppingCart } from "react-icons/ti";
 
 const ItemCounter = ({initial, stock, onAdd}) => {
-    //setModal, setAddItems
 
     const [counter, setCounter] = useState(initial);
 
@@ -15,11 +14,6 @@ const ItemCounter = ({initial, stock, onAdd}) => {
     const substr = () => {
         counter >= initial && setCounter(counter - 1)
     };
-
-    /*const onAdd = () => {
-        setModal(true);
-        setAddItems(counter) 
-    }*/
 
     const onAddActive = () => {
         onAdd(counter)

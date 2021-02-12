@@ -9,11 +9,10 @@ import { CartContext } from "../../context/cartContext";
 
 
 const ItemDetail = ({ item }) => {
-  //cart, setCart
 
-  const {cart, setCart} = useContext(CartContext)
   const {stock, setStock} = useContext(CartContext)
-  const {addItems, setAddItems} = useContext(CartContext)
+  
+  const [addItems, setAddItems] = useState(0)
 
   useEffect(()=> {  //set el stock del item sólo en el primer montaje
     setStock(item.stock)
@@ -22,11 +21,13 @@ const ItemDetail = ({ item }) => {
   const [modal, setModal] = useState(false)
   //const [stock, setStock] = useState(item.stock)
 
+  const [favourite, setFavourite] = useState(false)
+
   const {itemId} = useParams()
 
   const onAdd = (counter) => {
     setModal(true);
-    setAddItems(counter) //no puedo subir onAdd a ItemDetail porque necesito el estado local counter
+    setAddItems(counter)
 }
   
   useEffect(()=> {
@@ -45,25 +46,8 @@ const ItemDetail = ({ item }) => {
     console.log("Stock:", stock)
   }, [stock])
 
-  useEffect(() => {
-    //console.log("Cart:", cart)
-  }, [cart])
-
-  const favourite = () => {
-    let icon = document.querySelector(".favourite__icon");
-    let text = document.querySelector(".favourite__text");
-    if(icon.style.color === "white") {
-      icon.style.color = "gold";
-      text.innerText = "Mis favoritos"
-      text.style.border = "1px outset #63b231"
-      text.style.borderLeft = "none"
-      text.style.background = "linear-gradient(279deg, rgba(59,140,8,1) 0%, rgba(99,178,49,1) 49%, rgba(59,140,8,1) 82%)"
-    } else {
-      icon.style.color = "white";
-      text.innerText = "Agregar a favoritos";
-      text.style.background = "black";
-      text.style.border = "1px solid red"
-    }
+  const fav = () => {
+    !favourite ? setFavourite(true) : setFavourite(false)
   }
 
   return (
@@ -71,8 +55,12 @@ const ItemDetail = ({ item }) => {
       <div className="detail__photo">
         <img src={process.env.PUBLIC_URL + item.pictureurl} /*src={item.pictureurl}*/ alt="foto de portada"/>
         <span className="photo__favourite">
-          <GiRoundStar onClick={favourite} className="favourite__icon"/>
-          <p className="favourite__text">Agregar a favoritos</p>
+          <GiRoundStar onClick={() => fav()} className="favourite__icon" 
+          style={{ color: favourite ? "gold" : "white"}} />
+          { !favourite ?
+            <p className="favourite__add">Agregar a favoritos</p>
+            : <p className="favourite__added">Mis favoritos</p>
+          }
         </span>
       </div>   
       <div className="detail__info" key={item.id}>
@@ -104,12 +92,12 @@ const ItemDetail = ({ item }) => {
                 <p>Ilustración: {item.ilustracion}</p> }
           </div>
           <div className="detail__itemcounter">
-            <ItemCounter initial={1} stock={stock} onAdd={onAdd} /*setModal={setModal} setAddItems={setAddItems}*/ /> 
+            <ItemCounter initial={1} stock={stock} onAdd={onAdd} /> 
           </div>
         </div>
       </div> 
       { modal ? <CartModal item={item} setModal={setModal} addItems={addItems} setAddItems={setAddItems}
-      stock={stock} setStock={setStock} cart={cart} setCart={setCart} itemId={itemId} /> : null }
+      stock={stock} setStock={setStock} /> : null }
     </div>
   )
 }

@@ -6,7 +6,7 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
 import CartView from "./components/CartView/CartView"
 
-import ContainerPrueba from "./components/ContainerPrueba/ContainerPrueba"
+import CartForm from "./components/CartForm/CartForm"
 
 
 import {CartProvider} from "./context/cartContext" //componente que tiene el CartContext.Provider
@@ -28,13 +28,13 @@ function App() {
         <ItemListContainer loading="Cargando..." noMatch="No se encontraron coincidencias" />
         </Route>
         <Route exact path="/item/:itemId">
-          <ItemDetailContainer loading="Cargando..." /*cart={cart} setCart={setCart}*/ />
+          <ItemDetailContainer loading="Cargando..." noMatch="No se encontraron coincidencias" />
         </Route> 
         <Route exact path="/cart">
           <CartView loading="Cargando..." /*cart={cart} setCart={setCart}*/ />
         </Route> 
         <Route exact path="/prueba">
-          <ContainerPrueba/>
+          <CartForm/>
         </Route> 
 
         

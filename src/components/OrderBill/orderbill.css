@@ -1,0 +1,49 @@
+.orderbill__div {
+    width: 100%;
+    padding: 10px 20px;
+    border-bottom: 1px solid #63b231;
+    border-left: 1px solid #63b231;
+}
+
+.orderbill__div::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 130px;
+    height: 1px;
+    width: 30%;  /* percentage of the element width*/
+    border-bottom: 1px solid white;
+    animation: animation 3s 1 linear 
+}
+
+.orderbill__div::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 130px;
+    height: 1px;
+    width: 30%;  /* percentage of the element width*/
+    border-bottom: 1px solid white;
+    animation: animation 3s 1 linear 
+}
+
+@keyframes animation {
+    from { width: 0%}
+    to { width: 30%}
+}
+
+.orderId {
+    margin: 16px 3px;
+    padding: 5px;
+    color: #63b231;
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: none;
+}
+
+.copy {
+    padding: 5px;
+    margin: 0px 5px;
+    display: inline-block;
+}
+
