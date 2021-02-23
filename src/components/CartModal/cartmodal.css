@@ -197,14 +197,8 @@
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-    .cart__modal {
-        width: 70%
-    }
-}
-
-@media screen and (width: 1024px) {
-    .cart__modal {
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+    .modal__div .cart__modal {
         width: 65%
     }
 }

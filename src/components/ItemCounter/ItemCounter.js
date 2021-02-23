@@ -37,7 +37,7 @@ const ItemCounter = ({initial, stock, onAdd}) => {
             </div>
             { stock > 0 ?
             <button className="add-item" disabled={counter === 0} onClick={onAddActive}>
-                Agregar {counter > 0 && ` ${counter}`}<TiShoppingCart className="cart-icon"/>
+                Agregar {counter > 0 && ` ${counter}`}<TiShoppingCart className="cart-icon" />
             </button>
             : <button className="add-item" disabled>Sin stock</button>
             }

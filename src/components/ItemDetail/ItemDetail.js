@@ -16,13 +16,10 @@ const ItemDetail = ({ item }) => {
   const [modal, setModal] = useState(false)
   const [favButton, setFavButton] = useState(false)
 
-  useEffect(()=> {  //set el stock del item sólo en el primer montaje
+  useEffect(()=> { 
     setStock(item.stock)
-  }, [setStock, item.stock])
-
-  useEffect(() => {
     inFav(item) && setFavButton(true)
-  }, [inFav, item])
+  }, [setStock, item, inFav])
 
   const onAdd = (counter) => {
     setModal(true);
@@ -82,6 +79,10 @@ const ItemDetail = ({ item }) => {
                 <p>Ilustración: {item.ilustracion}</p> }
           </div>
           <div className="detail__itemcounter">
+            <div className="itemcounter__price">
+              <span>Precio unitario: </span>
+              <span className="price__tag">AR$ {item.price}</span>
+            </div>
             <ItemCounter initial={1} stock={stock} onAdd={onAdd} /> 
           </div>
         </div>

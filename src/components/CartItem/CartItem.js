@@ -45,14 +45,14 @@ const CartItem = ({purchase}) => {
                     <p>ISBN: {purchase.item.isbn}</p>
                 </div>
             </div>
-            <div className="item__edit"> 
+            <div className={!edit ? "item__edit" : "item__edit item__editing" } > 
                 { !edit ? <button onClick={() => editing(purchase.quantity)} >Editar</button> 
                 : <button onClick={() => save(purchase.item.bookId)}>Guardar</button> }
             </div>
             <div className="item__pricee">
                 <span>AR$ {purchase.item.price}</span>
             </div>
-            <div className="item__quantity">
+            <div className={!edit ? "item__quantity" : "item__quantity item__editing" }  >
             { edit &&
                 <div className="cart__counter">
                     <button className="button button-cart" onClick={minus}>

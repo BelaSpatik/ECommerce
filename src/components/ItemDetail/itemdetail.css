@@ -177,10 +177,25 @@
 .detail__itemcounter {
     width: 50%;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     border-top: 1px solid white;
 }
 
+.itemcounter__price {
+    margin-top: 10px;
+    padding: 2px 20px;
+    font-size: 18px;
+    background-color: black;
+    border: 1px solid #63b231;
+    border-radius: 2px;
+    box-shadow: 0px 0px 3px #63b231 inset;
+}
+
+.price__tag {
+    padding-left: 8px;
+}
 
 @media screen and (max-width: 767px) {
     .item__detail {
@@ -234,11 +249,14 @@
     .detail__f-tecnica {
         width: 85%;
     }
+    .itemcounter__price {
+        padding: 2px;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
     .item__detail {
-        width: 95%
+        width: 90%
     }
     .d-info__author {
         padding: 0px 10px;
@@ -246,9 +264,27 @@
     .d-info__tags {
         line-height: 25px;
     }
+    .detail__footer {
+        flex-direction: column;
+    }
+    .detail__f-tecnica {
+        width: 92%;
+        margin-bottom: 5px;
+    }
+    .detail__itemcounter {
+        width: 100%;
+        align-self: center;
+    }
+    .itemcounter__price {
+        margin: 10px 5px 0px 5px;
+        padding: 2px 5px
+    }
+    .price__tag {
+        padding-left: 8px;
+    }
 }
 
-@media screen and (width: 1024px) {
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
     .item__detail {
         width: 90%
     }
