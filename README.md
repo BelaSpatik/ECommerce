@@ -6,9 +6,9 @@
 * Base de datos con Firebase
 * React-router-dom || React-spring || React-scroll 
 
-##Para este proyecto busqué muchas referencias actuales de diferentes ecommerce de librerías para tomar inspiración y elementos comunes al momentos de pensar la estructura de la aplicación web. El diseño lo construí a partir de una paleta básica de tres coleres principales (negro, blanco y verde), dos secundarios (gris y rojo) y un estilo geométrico que permea a cada elemento. No utilizé librerías de CSS. 
-##Agregué una modalidad que permite guardar libros en favoritos para cuando el cliente desea estar al tanto de un producto pero todavía no se decide a comprarlo.
-##Para la funcionalidad del carrito, utilizé los siguientes hooks: useEffect, useState, useContext, useRef.
+## Para este proyecto busqué muchas referencias actuales de diferentes ecommerce de librerías para tomar inspiración y elementos comunes al momentos de pensar la estructura de la aplicación web. El diseño lo construí a partir de una paleta básica de tres coleres principales (negro, blanco y verde), dos secundarios (gris y rojo) y un estilo geométrico que permea a cada elemento. No utilizé librerías de CSS. 
+## Agregué una modalidad que permite guardar libros en favoritos para cuando el cliente desea estar al tanto de un producto pero todavía no se decide a comprarlo.
+## Para la funcionalidad del carrito, utilizé los siguientes hooks: useEffect, useState, useContext, useRef.
 
 _______________________________________________
 
