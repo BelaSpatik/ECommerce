@@ -20,7 +20,7 @@ const Favourites = () => {
     });
 
     return (
-        <div className="favourites__div wall" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + "images/bookshelf5.png"})`}}>
+        <div className="favourites__div wall" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + "images/bookshelf.png"})`}}>
            { !remove ? 
             <div className="control__div">
                <BsTrash className="control control__remove" onClick={() => setRemove(true)} />
