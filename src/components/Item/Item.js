@@ -16,7 +16,6 @@ const Item = ({item}) => {
             </div>
         </div>
         </React.Fragment>
-        
     )
 }
 
