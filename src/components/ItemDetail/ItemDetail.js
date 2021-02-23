@@ -1,65 +1,55 @@
 import React, {useContext, useState, useEffect} from "react";
 import "./itemdetail.css"
+import { Link } from "react-router-dom"
+import { GiRoundStar } from 'react-icons/gi';
+import { CartContext } from "../../context/cartContext";
 import ItemCounter from "../ItemCounter/ItemCounter"
 import CartModal from "../CartModal/CartModal"
-import { Link, useParams } from "react-router-dom"
-import { GiRoundStar } from 'react-icons/gi';
-
-import { CartContext } from "../../context/cartContext";
-
 
 const ItemDetail = ({ item }) => {
 
   const {stock, setStock} = useContext(CartContext)
+  const {inFav, addFavourite, removeFavourite} = useContext(CartContext)
   
   const [addItems, setAddItems] = useState(0)
+
+  const [modal, setModal] = useState(false)
+  const [favButton, setFavButton] = useState(false)
 
   useEffect(()=> {  //set el stock del item sólo en el primer montaje
     setStock(item.stock)
   }, [setStock, item.stock])
-  
-  const [modal, setModal] = useState(false)
-  //const [stock, setStock] = useState(item.stock)
 
-  const [favourite, setFavourite] = useState(false)
-
-  const {itemId} = useParams()
+  useEffect(() => {
+    inFav(item) && setFavButton(true)
+  }, [inFav, item])
 
   const onAdd = (counter) => {
     setModal(true);
     setAddItems(counter)
-}
-  
-  useEffect(()=> {
-    //console.log("/:itemId ->", itemId)
-  }, [itemId])
-
-  useEffect(() => {
-    console.log("Added items:", addItems)
-  }, [addItems])
-
-  useEffect(() => {
-    console.log("Modal:", modal)
-  }, [modal])
-
-  useEffect(() => {
-    console.log("Stock:", stock)
-  }, [stock])
+  }
 
   const fav = () => {
-    !favourite ? setFavourite(true) : setFavourite(false)
+    if(!favButton) {
+      setFavButton(true)
+      addFavourite(item)
+    } else {
+      setFavButton(false)
+      removeFavourite(item)
+    }
   }
 
   return (
     <div className="item__detail">
       <div className="detail__photo">
-        <img src={process.env.PUBLIC_URL + item.pictureurl} /*src={item.pictureurl}*/ alt="foto de portada"/>
+        <img src={process.env.PUBLIC_URL + item.pictureurl} alt="foto de portada"/>
         <span className="photo__favourite">
-          <GiRoundStar onClick={() => fav()} className="favourite__icon" 
-          style={{ color: favourite ? "gold" : "white"}} />
-          { !favourite ?
+        <GiRoundStar onClick={() => fav()} className="favourite__icon" style={{ color: favButton ? "gold" : "white"}} />
+          { !favButton ?
             <p className="favourite__add">Agregar a favoritos</p>
-            : <p className="favourite__added">Mis favoritos</p>
+            : <Link to={"/favourites"} className="favourites__link" >
+                  <p className="favourite__added">Mis favoritos</p>
+              </Link>
           }
         </span>
       </div>   

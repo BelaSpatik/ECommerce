@@ -3,12 +3,10 @@ import './cartwidget.css'
 import { TiShoppingCart } from "react-icons/ti";
 import { IconContext } from "react-icons";
 import { Link } from "react-router-dom"
-
 import { CartContext } from "../../context/cartContext"
 
 
 const CartWidget = () => {
-    //{cart}
     const {cart, cartCounter} = useContext(CartContext)
 
     const cartItems = cartCounter()
@@ -23,7 +21,6 @@ const CartWidget = () => {
                 <span className="cart__link link" href="#home">Carrito<TiShoppingCart/></span>
             </IconContext.Provider>
             <p className="cart__counter">Ítems: {cartItems ? cartItems : 0}</p>
-            {/* {cart}*/}
             </Link>
         </div>
 

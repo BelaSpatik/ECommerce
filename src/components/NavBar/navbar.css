@@ -18,13 +18,28 @@ select:focus, input:focus{
     background-color: white;
 }
 
+.navbar__main {
+    width: 65%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .navbar__logo {
-    margin-top: 5px;
     margin-left: 15px
+}
+
+.navbar__close {
+    display: none;
 }
 
 .navbar__menu {
     display: flex;
+    padding: 0px;
+}
+
+.menu__icon {
+    display: none;
 }
 
 .menu__item {
@@ -41,7 +56,7 @@ select:focus, input:focus{
     text-decoration: none;
 }
 
-.catalogo a {
+.catalogo .main__link {
     padding-bottom: 30px;
 }
 
@@ -56,7 +71,7 @@ select:focus, input:focus{
     width: 97%;
     color: white;
     position: absolute;
-    top: 80px;
+    top: 83px;
     left: 19px;
     grid-template-columns: repeat(4, 1fr);
     background-color: black;
@@ -95,18 +110,11 @@ select:focus, input:focus{
     border-left: none;
 }
 
-
-@keyframes underline {
-    0% {border-bottom: 0px solid black}
-    100% {border-bottom: 2px solid black}
-}
-
 .menu__link, .search {
     position: relative;
 }
 
 .menu__link:after, .search:after {    
-    /*background: none repeat scroll 0 0 transparent;*/
     bottom: -5px;
     content: "";
     display: block;
@@ -143,15 +151,15 @@ select:focus, input:focus{
 }
 
 .user__arrowicon {
-    font-size: 15px;
+    font-size: 16px;
     padding-left: 5px;
-    margin-bottom: -2px;
+    margin-bottom: -3px;
     color: #63b231
 }
 
 .user__menu {
     display: none;
-    width: 156px;
+    width: 152px;
     position: absolute;
     top: 40px;
     right: 0px;
@@ -165,23 +173,13 @@ select:focus, input:focus{
     box-shadow: 0px 0px 3px silver;
 }
 
-/*
-.user__menu {
-    display: none;
-    width: 156px;
-    position: absolute;
-    top: 55px;
-    right: 22px;
-    padding: 5px 0px;
-    padding-top: 10px;
-    text-align: left;
-    margin: 0px;
-    box-sizing: border-box;
-    background-color: white;
-    border-radius: 0px 0px 10px 10px;
-    border-left: 3px solid #63b231;
-    box-shadow: 0px 0px 3px silver;
-}*/
+.usermenu__close {
+    display: none
+}
+
+.user__menu a {
+    text-decoration: none;
+}
 
 .user__tab:hover .user__menu {
     display: block
@@ -194,7 +192,7 @@ select:focus, input:focus{
     border-bottom: 1px solid silver
 }
 
-.user-menu__item:last-child {
+ .Carrito .user-menu__item {
     border: none;
     border-radius: 0px 0px 10px 10px;
 }
@@ -217,7 +215,7 @@ select:focus, input:focus{
 
 .navbar__search--container {
     display: flex;
-    width: 37%;
+    width: 45%;
     margin: auto;
     height: 35px;
     border-radius: 30px;
@@ -226,10 +224,11 @@ select:focus, input:focus{
 
 .search__input, .search__select {
     padding: 5px 10px;
+    background-color: white;
     border: none;
 }
 .search__input {
-    width: 60%;
+    width: 100%;
     padding: 5px 15px;
     border-right: 1px solid gray;
     border-radius: 30px 0px 0px 30px;
@@ -248,4 +247,251 @@ select:focus, input:focus{
 .search__icon {
     color: white;
     font-size: 25px
+}
+
+@media screen and (max-width: 767px) {
+
+    .navbar__main {
+        width: 100%;
+        background-color: white;
+    }
+    .navbar__logo {
+        margin: 0px;
+    }
+    .navbar__menu {
+        margin: 0;
+        padding: 10px 0px;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        height: 100vh;
+        width: 55%;
+        overflow: scroll;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: black;
+        transition: left .9s ease-out;
+        border-right: 2px solid #63b231;
+        z-index: 3;
+    }
+    .menu__icon {
+        display: flex;
+        font-size: 35px;
+        margin: 15px 10px;
+    }
+    a .icon {
+        margin: 0px 2px;
+        color: black;
+    }
+    a:hover .icon{
+        color: #63b231;
+    }
+    #navbar__menu:target {
+        left: 0;
+    }
+    #user__tab:target {
+        right: 0px;
+    }
+    .user__tab {
+        padding: 10px 0px;
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 180px;
+        height: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        border: 1px solid #63b231;
+        transition: right .9s ease-out;
+        z-index: 3;
+    }
+    .user__tab span {
+        padding-left: 10px;
+    }
+    .usermenu__close {
+        display: inline;
+        color: red;
+        font-size: 10px;
+        margin-left: 15px;
+    }
+    .user__menu {
+        width: 101%;
+        display: block;
+        position: relative;
+        top: 10px;
+        right: 1px;
+        border: 1px solid #63b231;
+    }
+    .menu__item {
+        margin: 10px 0px;
+        margin-left: 20px;
+        text-align: left;
+        color: white;
+    }
+    .user__cart{
+        display: none
+    }
+    .menu__link, .cat-dropdown__item a {
+        padding: 0px;
+        text-align: left;
+        color: white;
+    }
+    .catalogo__dropdown {
+        margin: 0px;
+        margin-top: 5px;
+        position: unset;
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        padding: 0px;
+        top: 0;
+        left: 0;
+        box-shadow: none;
+        grid-template-columns: auto;
+        z-index: 0;
+    }
+    .cat-dropdown__item {
+        border: none
+    }
+    .navbar__close {
+        display: flex;
+        position: absolute;
+        top: 2px;
+        right: 5px;
+        color: white;
+        font-size: 20px;
+        border-radius: 50%;
+        opacity: 0.4;
+    }
+    .navbar__search {
+        width: 100%;
+        border-left: 5px solid #63b231;
+        border-right: 5px solid #63b231;
+    }
+    .navbar__search--container {
+        width: 98%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .navbar__logo {
+        width: 165px;
+    }
+    .navbar__menu {
+        width: 65%;
+    }
+    .menu__icon {
+        font-size: 30px;
+    }
+
+    #user__tab:target {
+        right: 0px;
+    }
+    .user__tab {
+        padding: 10px 0px;
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 60%;
+        height: 25%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        border: 1px solid #63b231;
+        transition: right .9s ease-out;
+    }
+    .user__tab span {
+        padding-left: 10px;
+    }
+
+    .usermenu__close {
+        color: red;
+        font-size: 10px;
+        margin-left: 6px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .navbar {
+        display: block;
+    }
+    .navbar__menu .menu__item {
+        margin: 0px 20px;
+    }
+    .navbar__main {
+        width: 100%;
+    }
+    .catalogo__dropdown {
+        left: 12px;
+        grid-template-columns: 1.3fr repeat(3, 1fr)
+    }
+    .user__cart {
+        display: none;
+    }
+    .menu__icon {
+        display: flex;
+        font-size: 35px;
+        margin: 15px;
+        order: 1;
+    }
+    .menu__icon .dropdown {
+        display: none;
+    }
+    a .icon {
+        margin: 0px 2px;
+        color: black;
+    }
+    a:hover .icon{
+        color: #63b231;
+    }
+    #user__tab:target {
+        right: 0px;
+    }
+    .user__tab {
+        padding: 10px 0px;
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 185px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        border: 1px solid #63b231;
+        transition: right .9s ease-out;
+        z-index: 3;
+    }
+    .user__tab span {
+        padding-left: 10px;
+    }
+    .usermenu__close {
+        display: inline;
+        color: red;
+        font-size: 10px;
+        margin-left: 15px;
+    }
+    .user__menu {
+        width: 101%;
+        display: block;
+        position: relative;
+        top: 10px;
+        right: 1px;
+        border: 1px solid #63b231;
+    }
+    .menu__item {
+        margin: 10px 0px;
+        margin-left: 20px;
+        text-align: left;
+        color: white;
+    }
+    .navbar__search--container {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1108px) {
+    .navbar__menu .menu__item {
+        margin: 0px 18px;
+    }
 }

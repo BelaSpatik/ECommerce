@@ -24,8 +24,8 @@ export const CartProvider = ({children}) => {
             }
             mergeDuplicate(purchase, purchase.item.bookId, addItems)
             cartCounter()
-        console.log("Item completo", item)
-        console.log("Item reducido", purchase)
+        //console.log("Item completo", item)
+        //console.log("Item reducido", purchase)
     }
 
     const searchIdInCart = (itemId) => {
@@ -43,7 +43,6 @@ export const CartProvider = ({children}) => {
     const changeQuantity = (itemId, counter) => {  //CartView
         searchIdInCart(itemId).quantity = counter
         setCart([...cart])
-        console.log("Cart", cart)
     }
 
     const removeFromCart = (itemId) => { //CartView
@@ -51,10 +50,6 @@ export const CartProvider = ({children}) => {
             purchase.item.bookId !== itemId
         )
         setCart(filtered)
-        // const index = cart.findIndex( item => {
-        //    item.item.bookId === itemId
-        //}) -> conseguir el index para el splice
-        //setCart([...cart])
     }
 
     const cartCounter = () => { //CartWidget
@@ -73,12 +68,28 @@ export const CartProvider = ({children}) => {
         setCart([])
     }
 
-    console.log("Cart", cart)
+    const [favourites, setFavourites] = useState([])
 
+    const removeFavourite = (item) => {
+        let removed = favourites.filter(book => book.id !== item.id)
+        setFavourites(removed)
+    }
+
+    const inFav = (item) => {
+        return favourites.find(book => book.id === item.id)
+    }
+
+    const addFavourite = (item) => {
+        !inFav(item) && setFavourites([...favourites, item])
+    }
+
+    //console.log("Cart", cart)
+    //console.log(favourites)
 
     return (
-        <CartContext.Provider value={{cart, setCart, searchIdInCart, stock, setStock,
-          addMoreToCart, changeQuantity, removeFromCart, addProduct, mergeDuplicate, clearCart, total, cartCounter}}>
+        <CartContext.Provider value={{cart, setCart, searchIdInCart, stock, setStock, addMoreToCart, changeQuantity,
+          removeFromCart, addProduct, mergeDuplicate, clearCart, total, cartCounter, 
+          favourites, inFav, addFavourite, removeFavourite}}>
             {children}
         </CartContext.Provider>
     )

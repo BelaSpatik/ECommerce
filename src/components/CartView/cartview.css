@@ -5,10 +5,15 @@
 .cartview__div button {
     cursor: pointer;
 }
+.cartview__div a {
+    text-decoration: none
+}
 
 .cartview__div {
     width: 90%;
-    /*height: 100vh;*/
+}
+
+.wall {
     margin: auto;
     display: flex;
     border-top: 8px solid black;
@@ -23,18 +28,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*justify-content: center;*/
     width: 100%;
     padding: 0px 50px;
     color: white;
-    /*height: 100%;*/
     margin-bottom: 30px;
+    min-height: 100vh;
 }
 
 .cartview__firstrow {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center
 }
 
 .cartview__display h1 {
@@ -91,8 +96,6 @@
     padding: 0px;
     margin: 0px;
     border-left: 2px solid white;
-    /*background-color: rgba(0, 0, 0, 0.2);
-    border: 1px solid blue*/
 }
 
 .cartview__controls {
@@ -104,7 +107,6 @@
     padding-left: 20px;
     align-items: center;
     border-top: 1px solid white;
-    /*border-left: 1px solid white;*/
 }
 
 .cartview__controls::before {
@@ -175,3 +177,88 @@
     margin-top: 30px;
     z-index: 1
 }
+
+@media screen and (max-width: 767px) {
+
+    .cartview__div {
+        width: 100%;
+        border: none;
+    }
+
+    .cartview__display {
+        margin: 10px 0px;
+        padding: 0px 10px;    
+    }
+
+    .cartview__firstrow {
+        flex-direction: column;
+        padding: 0px 5px;
+        padding-bottom: 10px;
+    }
+    .cartview__button {
+        padding: 10px
+    }
+    .cartview__favourite {
+        align-self: flex-start;
+    }
+    .cartview__title {
+        font-size: 20px
+    }
+    .grid__banner {
+        display: none
+    }
+    .grid__itemlist {
+        margin-top: 15px;
+        width: 100%;
+        border: 2px solid white;
+        border-bottom: none;
+    }
+    
+    .cartview__controls {
+        padding-left: 0px;
+    }
+    .cartview__controls::before {
+        width: 58%;
+        bottom: 20px;
+    }
+
+    .align {
+        margin-top: 15px;
+        margin-bottom: 40px;
+        padding-left: 5px;
+        flex-direction: column;
+    }
+    
+    .controls__total {
+        width: 60%;
+    }
+    .total__row {
+        padding-left: 10px
+    }
+}
+
+@media screen and (max-width: 320px) {
+
+    .align button:nth-child(2) {
+        width: 105%
+    }
+    .cartview__controls::before {
+        width: 50%;
+    }
+} 
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .cartview__display {
+        padding: 0px 10px
+    }
+    .itemlist__item, .grid__banner {
+        grid-template-columns: 54% 12% 13% 13% 8%
+    }
+    .itemlist__item, .tablet__view {
+        grid-template-columns: 50% 12% 13% 13% 8%
+    }
+    .item__quantity .cart__counter {
+        width: 100%;
+    }
+}
+

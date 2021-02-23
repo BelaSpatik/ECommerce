@@ -1,12 +1,10 @@
 import React, {useState, useContext} from 'react'
 import "./cartitem.css"
-import { CartContext } from "../../context/cartContext";
 import { VscTrash } from "react-icons/vsc"
 import { AiFillPlusSquare, AiFillMinusSquare } from "react-icons/ai";
-
+import { CartContext } from "../../context/cartContext";
 
 const CartItem = ({purchase}) => {
-    //index
     
     const {changeQuantity, removeFromCart} = useContext(CartContext)
 
@@ -16,8 +14,6 @@ const CartItem = ({purchase}) => {
 
     const editing = (quantity) => {
         setCounter(quantity)
-        //let purchase = searchIdInCart(itemId)
-        //console.log(purchase)
         setEdit(true)
     }
 
@@ -36,16 +32,12 @@ const CartItem = ({purchase}) => {
 
     const remove = (itemId) => {
         removeFromCart(itemId)
-        //console.log("INDEX", index)
     }
-
-    //onClick={ () => editing(purchase.item.bookId)} 
-
 
     return (
         <li className="itemlist__item" key={purchase.item.bookId} >
             <div className="item__data">
-                <img className="item__cover cover__view" src={process.env.PUBLIC_URL + purchase.item.picture} /*src={purchase.item.picture}*/ alt="portada" />
+                <img className="item__cover cover__view" src={process.env.PUBLIC_URL + purchase.item.picture} alt="portada" />
                 <div className="data__main">
                     <h2>{purchase.item.name}</h2>
                     <h3>{purchase.item.author}</h3>

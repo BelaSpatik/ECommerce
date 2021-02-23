@@ -2,14 +2,12 @@ import React from "react"
 import "./item.css"
 import { Link } from "react-router-dom"
 
-//<img src={process.env.PUBLIC_URL + pictureurl}
-
 const Item = ({item}) => {
     return (
         <React.Fragment>
         <div key={item.id}  className={"item__div"}>
         <Link to={`/item/${item.id}`} >
-            <img src={process.env.PUBLIC_URL + item.pictureurl} /*src={item.pictureurl}*/ className={"item__cover"} alt="book-cover"></img> 
+            <img src={process.env.PUBLIC_URL + item.pictureurl} className={"item__cover"} alt="book-cover"></img> 
         </Link>
             <div className={"item__info"}>
                 <span className={"info__title"}>{item.name}</span>

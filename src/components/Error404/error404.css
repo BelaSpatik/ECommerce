@@ -1,5 +1,9 @@
 .not__found {
-    margin-top: 90px;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .not__found  h1 {
@@ -8,4 +12,13 @@
 
 .not__found img {
     width: 30%
+}
+
+@media screen and (max-width: 767px) {
+    .not__found  h1 {
+        font-size: 25px;
+    }
+    .not__found img {
+        width: 250px
+    }
 }

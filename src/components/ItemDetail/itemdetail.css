@@ -43,12 +43,12 @@
 }
 
 .favourite__added {
-    padding: 5px;
+    padding: 5px 15px;
     color: white;
     font-size: 18px;
     font-weight: 450;
     margin: 0px;
-    border: 1px groove #63b231;
+    border: 1px solid #63b231;
     border-left: none;
     border-radius: 5px;
     background: linear-gradient(279deg, rgba(59,140,8,0.8) 0%, rgba(99,178,49,0.8) 49%, rgba(59,140,8,0.8) 82%)
@@ -67,10 +67,12 @@
     box-shadow: 0px 0px 5px black;
 }
 
+.favourites__link {
+    text-decoration: none
+}
+
 .detail__info {
-    /*padding-left: 20px;*/
     color: white;
-    /*background-color: black;*/
     border-left: 2px solid white;
 }
 
@@ -79,7 +81,6 @@
     margin-left: 20px;
     color: black;
     background-color: white;
-    /*border-right: 2px solid black;*/
 }
 
 .d-info__name {
@@ -130,7 +131,6 @@
     margin-top: 10px
 }
 
-
 .d-info__tags span {
     margin: 0px 5px;
     padding: 1px 5px;
@@ -140,12 +140,10 @@
     border-radius: 8px;
     border: 1px solid rgba(255, 69, 0, 0.6);
     border: 1px solid #63b231;
-
 }
 
 .detail__footer {
     display: flex;
-    /*border-top: 1px solid white;*/
     background-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -155,10 +153,6 @@
     margin-left: 20px;
     display: inline-block;
     color: white;
-    /*border-top: 1px solid white;*/
-    /*border-right: 1px solid white;*/
-    /*border-left: 1px solid white;*/
-
 }
 
 .detail__f-tecnica h3 {
@@ -168,8 +162,6 @@
     border-bottom: 1px solid white;
     background-color: white;
     color: black;
-    /*border-left: 2px solid black;
-    border-bottom: 2px solid black*/
     box-shadow: -5px 5px 1px rgba(250, 250, 250, 0.3);
 
 }
@@ -187,6 +179,78 @@
     display: flex;
     align-items: center;
     border-top: 1px solid white;
-    /*background-color: black;*/
-    /*background-color: rgba(0, 0, 0, 0.2);*/
 }
+
+
+@media screen and (max-width: 767px) {
+    .item__detail {
+        width: 90%;
+    }
+    .item__detail, .detail__footer {
+        flex-direction: column;
+    }
+    .detail__photo {
+        padding-bottom: 20px;
+    }
+    .detail__photo img {
+        box-shadow: 8px 8px 1px rgb(250 250 250 / 20%);
+        margin-bottom: 20px;
+    }
+    .detail__info {
+        border-left: none;
+    }
+    .d-info__name, .d-info__author {
+        margin: 10px 14px;
+    }
+    .d-info__tags {
+        line-height: 27px;
+        word-break: break-word;
+    }
+    .detail__f-tecnica {
+        width: 90%;
+    }
+    .detail__itemcounter {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .item__detail {
+        width: 95%;
+    }
+    .d-info__name {
+        font-size: 28px
+    }
+    .d-info__author {
+        padding: 0px 15px;
+    }
+    
+    .d-info__tags span {
+        display: block;
+        width: 70%;
+        padding: 0px 5px;
+        margin: 3px 0px;
+    }
+    .detail__f-tecnica {
+        width: 85%;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .item__detail {
+        width: 95%
+    }
+    .d-info__author {
+        padding: 0px 10px;
+    }
+    .d-info__tags {
+        line-height: 25px;
+    }
+}
+
+@media screen and (width: 1024px) {
+    .item__detail {
+        width: 90%
+    }
+}
+

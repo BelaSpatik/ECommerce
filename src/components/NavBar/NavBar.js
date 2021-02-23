@@ -1,23 +1,22 @@
 import React, {useState, useEffect} from 'react'
 import './navbar.css'
-import CartWidget from '../CartWidget/CartWidget'
 import { Link } from "react-router-dom"
 import { BiDownArrow, BiSearchAlt2 } from "react-icons/bi"
-import { IconContext } from "react-icons"
 import { IoIosArrowDown } from "react-icons/io"
-//import { getCategories } from "../../backend/catalog"
+import { AiOutlineMenuFold } from "react-icons/ai"
+import { TiShoppingCart } from "react-icons/ti";
+import { BsPersonFill } from "react-icons/bs";
+import { ImCross } from 'react-icons/im';
 import { getCategories } from "../../firebase"
+import CartWidget from '../CartWidget/CartWidget'
 
 export const NavBar = () => {  
 
     const [categories, setCategories] = useState([])
-    /*
-    useEffect(()=> {
-        getCategories().then((result) => {
-        setCategories(result) })
-        console.log(categories)
-    }, [categories])
-    */
+
+    const userMenu = ["Registrarse", "Ingresar", {name: "Favoritos", link: "/favourites"}, {name: "Carrito", link: "/cart"}]
+    
+    const searchSelect = ["Palabra clave", "Título", "Autor", "ISBN"]
 
    useEffect(() => {
        getCategories() 
@@ -29,81 +28,80 @@ export const NavBar = () => {
                    ...doc.data()
                 })
             })
-            console.log("Resultado:", result)
+            //console.log("Resultado:", result)
             setCategories(result)
         })
     }, [])
 
     return (
         <nav className="navbar">
-            <Link to={"/"}><img src={process.env.PUBLIC_URL + "/images/addenda1.png"} className="navbar__logo" alt="logo" /></Link>
-            <ul className="navbar__menu">
-                <li className="menu__item">
-                <Link to={"/"}><span className="menu__link link" href="#home">Home</span></Link>
-                </li>
-                <li className="menu__item catalogo">
-                <IconContext.Provider value= { {className: "catalogo__icon"}}>
-                    <a className="menu__link link" href="#catalogo">Catálogo<IoIosArrowDown/></a>
-                    <ul className="catalogo__dropdown">
-                        { categories.map((category) => {
-                            return (  //${category.catId}/${category.name}/${category.order}
+            <div className="navbar__main">
+                <Link to={"/"}><img src={process.env.PUBLIC_URL + "/images/addenda1.png"} className="navbar__logo" alt="logo" /></Link>
+                <div className="menu__icon">
+                    <Link to={"/cart"}><TiShoppingCart className="user__cart__icon icon" /></Link>
+                    <a href="#user__tab"><BsPersonFill className="user__menu__icon icon"/></a>
+                    <a href="#navbar__menu" className="dropdown"><AiOutlineMenuFold className="navbar__menu__icon icon"/></a>
+                </div>
+                <ul className="navbar__menu" id="navbar__menu">
+                    <a href="#close"><ImCross className="navbar__close"/></a>
+                    <li className="menu__item">
+                        <Link to={"/"}>
+                            <span className="menu__link link">Home</span>
+                        </Link>
+                    </li>
+                    <li className="menu__item catalogo">
+                        <Link to={"/"}>
+                            <span className="menu__link link main__link">Catálogo<IoIosArrowDown className="catalogo__icon"/></span>
+                        </Link> 
+                        <ul className="catalogo__dropdown">
+                            { categories.map((category) => 
                                 <li className="cat-dropdown__item" key={category.catId}>
-                                   <Link to={`/category/${category.catId}`}>{category.name}</Link>
+                                    <Link to={`/category/${category.catId}`}>{category.name}</Link>
                                 </li> )
-                            })
-                        }
-                    </ul>
-                </IconContext.Provider>
-                </li>
-                <li className="menu__item">
-                    <a className="menu__link link" href="#ubicacion">Ubicación</a>
-                </li>
-                <li className="menu__item">
-                <Link to={"/prueba"}>
-                    <span className="menu__link link" href="#contacto">Contacto</span>
-                </Link>
-                </li>
-            </ul>
-            <div className="navbar__user">
-                <CartWidget /*cart={cart}*/ />
-                <IconContext.Provider value= { {className: "user__arrowicon" }}>
-                <div className="user__tab">Nombre.usuario
-                <BiDownArrow/>
-                <ul className="user__menu">
-                    <li className="user-menu__item">
-                        Registrarse
+                            }
+                        </ul>
                     </li>
-                    <li className="user-menu__item">
-                        Ingresar
+                    <li className="menu__item">
+                        <Link to={"/ubicacion"}>
+                            <span className="menu__link link">Ubicación</span>
+                        </Link>
                     </li>
-                    <li className="user-menu__item">
-                        Favoritos
-                    </li>
-                    <li className="user-menu__item">
-                        Carrito
-                    </li>
-                    <li className="user-menu__item">
-                        Finalizar compra
+                    <li className="menu__item">
+                        <Link to={"/contacto"}>
+                            <span className="menu__link link">Contacto</span>
+                        </Link>
                     </li>
                 </ul>
+            </div>
+            <div className="navbar__user">
+                <CartWidget />
+                <div className="user__tab" id="user__tab">
+                    <span>Nombre.usuario
+                        <BiDownArrow className="user__arrowicon"/>
+                        <a href="#close"><ImCross className="usermenu__close"/></a>
+                    </span>
+                    <ul className="user__menu">
+                        { userMenu.map((tab, i) => 
+                            typeof tab === "string" ? 
+                            <li key={i} className="user-menu__item">{tab}</li>
+                            : <Link key={i} className={tab.name} to={tab.link}>
+                                <li className="user-menu__item" >{tab.name}</li>
+                              </Link> 
+                        )}
+                    </ul>
                 </div>
-                </IconContext.Provider>
             </div>
             <div className="navbar__search">
-            <div className="navbar__search--container">
-                <input className="search__input" type="text" placeholder="Ingresar título, autor, ISBN o palabra clave"></input>
-                <select className="search__select">
-                    <option className="select__item">Palabra clave</option>
-                    <option className="select__item">Título</option>
-                    <option className="select__item">Autor</option>
-                    <option className="select__item">ISBN</option>
-                </select>
-                <div className="search__button">
-                <IconContext.Provider value= { {className: "search__icon"}}>
-                    <BiSearchAlt2/>
-                </IconContext.Provider>
-                </div>
-            </div> 
+                <div className="navbar__search--container">
+                    <input className="search__input" type="text" placeholder="Ingresar título, autor, ISBN o palabra clave"></input>
+                    <select className="search__select">
+                        { searchSelect.map((option, i) => 
+                            <option key={i} className="select__item">{option}</option> )}
+                    </select>
+                    <div className="search__button">
+                        <BiSearchAlt2 className="search__icon"/>
+                    </div>
+                </div> 
             </div>   
         </nav>
     )

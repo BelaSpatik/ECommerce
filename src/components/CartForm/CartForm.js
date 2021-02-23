@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
-import { animateScroll } from "react-scroll"
 import "./cartform.css"
+import { animateScroll } from "react-scroll"
 import FormInput from "../FormInput/FormInput"
  
 
 const CartForm = ({getInfo, orderId}) => {
 
+    const [load, setLoad] = useState(false)
+    const [finish, setFinish] = useState(false)
     const initialState = { fullname: "", telephone: "", email: ""}
 
     const [formData, setFormData] = useState(initialState)
-    //let { fullname, telephone, email } = formData
     const [formError, setFormError] = useState(null)
 
-    console.log(formError);
+    //console.log(formError);
     const validation = {
         fullname: {
             regex: /^[a-zA-z]+ (.+\s+.*)|(.*\s+.+)[a-zA-z]+$/i,
@@ -23,7 +24,7 @@ const CartForm = ({getInfo, orderId}) => {
             error: "Ingrese un número válido para Argentina. Ej: (011) 4780-9032"
         },
         email: {
-            regex: /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/,
+            regex: /^[-a-z0-9~!$%^&*_=+}{'?]+(\.[-a-z0-9~!$%^&*_=+}{'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i,
             error: "Ingrese una dirección de correo válida"
         }
     };
@@ -45,13 +46,11 @@ const CartForm = ({getInfo, orderId}) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        const button = document.querySelector(".form__submit");
-        button.innerHTML = 'Confirmando <img class="loading" src="/images/greenloading.gif"}>'
-        button.classList.add("loading-state")
+        setLoad(true)
         animateScroll.scrollToBottom({delay: 1000, smooth: "linear"})
         setTimeout(() => {
             !formError && getInfo(formData)
-            button.innerHTML = 'Orden generada'
+            setFinish(true)
         }, 1000);
     }
 
@@ -61,20 +60,21 @@ const CartForm = ({getInfo, orderId}) => {
         { name: "email", type: "email", placeholder: "Email"}
     ]
     
-    console.log(formData)
-
     return (
         <React.Fragment>
             <h2 className="form__title">Complete sus datos</h2>
             <form onSubmit={submitHandler} className="form__form">
-                { inputs.map((input) => {
-                    return (
-                        <FormInput key={input.name} name={input.name} type={input.type} placeholder={input.placeholder}
-                               valueHandler={valueHandler} validate={validate} formError={formError} />
-                    )
-                })}
-                <button className="cartview__button form__submit" 
-                type="submit" disabled={orderId}>Generar orden de compra</button>
+                { inputs.map((input) => 
+                    <FormInput key={input.name} name={input.name} type={input.type} placeholder={input.placeholder}
+                        valueHandler={valueHandler} validate={validate} formError={formError} /> )
+                }
+                { ! finish ?
+                    <button className={!load ? "cartview__button form__submit" : "cartview__button form__submit loading-state" }
+                       type="submit" disabled={orderId}>
+                           { !finish && !load ? "Generar orden de compra" 
+                             : <span className="span__loading">Confirmando <img className="loading" src="/images/greenloading.gif" alt="loading"/></span> }
+                    </button>
+                    : <button className="cartview__button form__submit">Orden generada</button> }
             </form>
         </React.Fragment>
     )

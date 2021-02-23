@@ -1,0 +1,24 @@
+.scroll__top {
+    position: fixed;
+    right: 13px;
+    bottom: 15px;
+    padding: 8px;
+    font-size: 50px;
+    color: white;
+    background-color: black;
+    border: 3px solid #63b231;
+    border-radius: 100%;
+    box-shadow: 0px 0px 2px #63b231;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
+}
+
+@media screen and (max-width: 767px) {
+  .scroll__top {
+    right: 8px;
+  }
+}

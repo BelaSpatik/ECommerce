@@ -19,12 +19,7 @@
 .cart__icon {
     font-size: 24px;
     padding-left: 5px;
-    margin-bottom: -3px;
-    color: gray;
-}
-
-.cart__icon:hover {
-    color: #63b231
+    margin-bottom: -2px;
 }
 
 .cart__link {

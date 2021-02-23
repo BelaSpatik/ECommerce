@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useContext } from 'react'
+import "./cartmodal.css"
 import { Link } from "react-router-dom"
 import { TiShoppingCart } from "react-icons/ti";
-import "./cartmodal.css"
-
 import { CartContext } from "../../context/cartContext";
 
 
 const CartModal = ({item, setModal, addItems, setAddItems, stock, setStock}) => {
 
     const [goCart, setGoCart] = useState(false)
+    const [load, setLoad] = useState(false)
 
     const {addProduct} = useContext(CartContext)
 
@@ -18,9 +18,7 @@ const CartModal = ({item, setModal, addItems, setAddItems, stock, setStock}) => 
     }
     
     const confirm = () => {
-        const button = document.querySelector(".cart__confirm");
-        button.innerHTML = 'Confirmando <img class="loading" src="/images/greenloading.gif"}>'
-        button.classList.add("loading-state")
+        setLoad(true)
         setStock(stock - addItems);
         addProduct(item, addItems)
         setTimeout(() => {
@@ -28,15 +26,11 @@ const CartModal = ({item, setModal, addItems, setAddItems, stock, setStock}) => 
         }, 1000);
     }
 
-   useEffect (() => {
-       console.log("GoCart:", goCart)
-   }, [goCart])
-
     return (
         <div className="modal__div">
             <div className="cart__modal">
             <button className="modal__exit" onClick={exit}>X</button>
-            <img className="modal__cover" src={process.env.PUBLIC_URL + item.pictureurl} /*src={item.pictureurl}*/ alt="foto de portada"/>
+            <img className="modal__cover" src={process.env.PUBLIC_URL + item.pictureurl} alt="foto de portada"/>
             <div className="modal__info">
                 <div className="m-info__item">
                     <h1 className="item__name">{item.name}</h1>
@@ -54,19 +48,19 @@ const CartModal = ({item, setModal, addItems, setAddItems, stock, setStock}) => 
                         </div>
                     </div>
                     { !goCart &&
-                    <button className="cart__confirm" onClick={confirm}>Confirmar compra</button> }
+                    <button className={!load ? "cart__confirm" : "cart__confirm loading-state"} onClick={confirm} >
+                        { !load ? "Confirmar compra" 
+                        : <span className="span__loading">Confirmando <img className="loading" src="/images/greenloading.gif" alt="loading"/></span> }
+                    </button> }
                     { goCart &&
-                    <>
                     <Link to={"/cart"}>
                         <button className="cart__goCart">Ir al carrito
                         <TiShoppingCart className="cart__icon" /></button>
-                    </Link>  
-                    </> }
+                    </Link> }
                 </div>
             </div>
         </div>
-        </div>
-    )
+    </div> )
 }
 
 export default CartModal

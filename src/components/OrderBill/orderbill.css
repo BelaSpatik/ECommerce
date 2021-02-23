@@ -33,7 +33,7 @@
 }
 
 .orderId {
-    margin: 16px 3px;
+    margin: 0px 3px;
     padding: 5px;
     color: #63b231;
     font-size: 16px;
@@ -45,5 +45,61 @@
     padding: 5px;
     margin: 0px 5px;
     display: inline-block;
+}
+
+.checkout {
+    display: block;
+    margin: 10px auto;
+    margin-bottom: 5px;
+    padding: 6px 50px;
+}
+
+.checkout:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    height: 1px;
+    width: 45%;  /* percentage of the element width*/
+    border-bottom: 1px solid white;
+    animation: animation2 3s 1 linear 
+}
+
+.checkout:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 30px;
+    height: 1px;
+    width: 45%;  /* percentage of the element width*/
+    border-bottom: 1px solid white;
+    animation: animation2 3s 1 linear 
+}
+
+@keyframes animation2 {
+    from { width: 0%}
+    to { width: 45%}
+}
+
+@media screen and (max-width: 767px) {
+
+    .orderbill__div {
+        border-left: none
+    }
+
+    .orderbill__div::before, .orderbill__div::after {
+        bottom: 200px
+    }
+
+    .checkout:before, .checkout:after   {
+        width: 20%;
+    }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .checkout:before, .checkout:after  {
+        width: 42%;
+    }
 }
 

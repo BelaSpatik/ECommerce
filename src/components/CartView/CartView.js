@@ -1,14 +1,12 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useState, useContext} from 'react'
 import "./cartview.css"
 import { TiShoppingCart } from "react-icons/ti";
 import { GiRoundStar } from 'react-icons/gi';
-import CartItem from "../CartItem/CartItem"
-import CartOrder from "../CartOrder/CartOrder"
 import { Link } from "react-router-dom"
 import { animateScroll } from "react-scroll"
-
-
 import { CartContext } from "../../context/cartContext";
+import CartItem from "../CartItem/CartItem"
+import CartOrder from "../CartOrder/CartOrder"
 
 const CartView = () => {
 
@@ -25,21 +23,18 @@ const CartView = () => {
         animateScroll.scrollToBottom()
     }
 
-    useEffect(()=> {
-        console.log("CART", cart)
-    }, [cart])
-
-
     return (
         <React.Fragment>
             { !cart.length &&
-            <div className="cartview__div">
+            <div className="cartview__div wall">
             <div className="cartview__display">
                 <div className="cartview__firstrow">
                     <h1 className="cartview__title">Mi Carrito<TiShoppingCart/></h1>
-                    <button className="cartview__favourite cartview__button">Mis favoritos<GiRoundStar className="cartview__icon"/></button>
+                    <Link to="/favourites">
+                        <button className="cartview__favourite cartview__button">Mis favoritos<GiRoundStar className="cartview__icon"/></button>
+                    </Link>
                 </div>
-                <div className="grid__banner">
+                <div className="grid__banner tablet__view">
                     <span className="banner__product">Producto</span>
                     <span></span>
                     <span>Precio</span>
@@ -57,7 +52,7 @@ const CartView = () => {
             </div> 
             }
             { cart.length >= 1 &&
-            <div className="cartview__div" style={{height: cart.length > 1 && "100%"}}>
+            <div className="cartview__div wall" style={{height: cart.length > 1 && "100%"}}>
             <div className="cartview__display">
                 <div className="cartview__firstrow">
                     <h1 className="cartview__title">Mi Carrito<TiShoppingCart className="cartview__icon" />
@@ -70,7 +65,7 @@ const CartView = () => {
                     <span></span>
                     <span>Precio</span>
                     <span>Cantidad</span>
-                    <span>Subtotal</span>
+                    <span className="subtotal">Subtotal</span>
                 </div>
             <ul className="grid__itemlist">
                 { cart.map((purchase) => {
