@@ -1,6 +1,5 @@
 {
   "name": "ecommerce",
-  "homepage": "https://belaspatik.github.io/ECommerce/build",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
